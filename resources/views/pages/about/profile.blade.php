@@ -8,12 +8,12 @@
     <!-- Page Header Start -->
     <div class="container-fluid page-header mb-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container text-center">
-            <h1 class="display-4 text-white animated slideInDown mb-4">About Us</h1>
+            <h1 class="display-4 text-white animated slideInDown mb-4">Profile</h1>
             <nav aria-label="breadcrumb animated slideInDown">
                 <ol class="breadcrumb justify-content-center mb-0">
                     <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
                     <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
-                    <li class="breadcrumb-item text-primary active" aria-current="page">About Us</li>
+                    <li class="breadcrumb-item text-primary active" aria-current="page">Profile</li>
                 </ol>
             </nav>
         </div>
@@ -100,8 +100,8 @@
             <div class="row g-4 justify-content-center py-2" style="max-width:800px; margin: 0 auto;">
                 <div class="bg-light border-bottom border-5 border-primary rounded p-4">
                     <h4 class="text-dark mb-2 text-center">"Menjadi Lembaga terpercaya dalam menciptakan generasi anak yatim
-dan dhu’afa mandiri yang berakhlaqul karimah"
-</h4>
+                        dan dhu’afa mandiri yang berakhlaqul karimah"
+                    </h4>
                 </div>
             </div>
         </div>
@@ -157,7 +157,8 @@ dan dhu’afa mandiri yang berakhlaqul karimah"
                         <p class="wow fadeInUp" data-wow-delay="0.5s">Temukan lebih lanjut tentang Struktur Organisasi
                             Yayasan Anshor Yatim & Dhuafa. Klik di sini
                             untuk melihat lebih lanjut.</p>
-                        <a class="btn btn-primary py-2 px-3 me-3 wow fadeInUp" data-wow-delay="0.5s" href="#">
+                        <a class="btn btn-primary py-2 px-3 me-3 wow fadeInUp" data-wow-delay="0.5s"
+                            href="{{ route('structure') }}">
                             Learn More
                             <div class="d-inline-flex btn-sm-square bg-white text-primary rounded-circle ms-2">
                                 <i class="fa fa-arrow-right"></i>
