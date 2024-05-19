@@ -1,9 +1,9 @@
 /********** Template CSS **********/
 :root {
-    --primary: #FF6F0F;
-    --secondary: #FFF0E6;
-    --light: #F8F8F9;
-    --dark: #001D23;
+    --primary: #ff6f0f;
+    --secondary: #fff0e6;
+    --light: #f8f8f9;
+    --dark: #001d23;
 }
 
 .back-to-top {
@@ -14,31 +14,29 @@
     z-index: 99;
 }
 
-
 /*** Spinner ***/
 #spinner {
     opacity: 0;
     visibility: hidden;
-    transition: opacity .5s ease-out, visibility 0s linear .5s;
+    transition: opacity 0.5s ease-out, visibility 0s linear 0.5s;
     z-index: 99999;
 }
 
 #spinner.show {
-    transition: opacity .5s ease-out, visibility 0s linear 0s;
+    transition: opacity 0.5s ease-out, visibility 0s linear 0s;
     visibility: visible;
     opacity: 1;
 }
 
-
 /*** Button ***/
 .btn {
     font-weight: 500;
-    transition: .5s;
+    transition: 0.5s;
 }
 
 .btn.btn-primary,
 .btn.btn-outline-primary:hover {
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 .btn.btn-primary:hover {
@@ -71,15 +69,14 @@
     font-weight: normal;
 }
 
-
 /*** Navbar ***/
 .fixed-top {
-    transition: .5s;
+    transition: 0.5s;
 }
 
 .top-bar {
     height: 45px;
-    border-bottom: 1px solid rgba(255, 255, 255, .07);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 .navbar .dropdown-toggle::after {
@@ -94,7 +91,7 @@
 .navbar .navbar-nav .nav-link {
     margin-right: 30px;
     padding: 25px 0;
-    color: #FFFFFF;
+    color: #ffffff;
     font-weight: 500;
     outline: none;
 }
@@ -107,7 +104,7 @@
 @media (max-width: 991.98px) {
     .navbar .navbar-nav {
         margin-top: 10px;
-        border-top: 1px solid rgba(0, 0, 0, .07);
+        border-top: 1px solid rgba(0, 0, 0, 0.07);
         background: var(--dark);
     }
 
@@ -123,18 +120,17 @@
         top: 100%;
         transform: rotateX(-75deg);
         transform-origin: 0% 0%;
-        transition: .5s;
+        transition: 0.5s;
         opacity: 0;
     }
 
     .navbar .nav-item:hover .dropdown-menu {
         transform: rotateX(0deg);
         visibility: visible;
-        transition: .5s;
+        transition: 0.5s;
         opacity: 1;
     }
 }
-
 
 /*** Header ***/
 .carousel-caption {
@@ -146,7 +142,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: rgba(0, 29, 35, .8);
+    background: rgba(0, 29, 35, 0.8);
     z-index: 1;
 }
 
@@ -169,7 +165,7 @@
         position: relative;
         min-height: 450px;
     }
-    
+
     #header-carousel .carousel-item img {
         position: absolute;
         width: 100%;
@@ -181,14 +177,14 @@
 .page-header {
     padding-top: 12rem;
     padding-bottom: 6rem;
-    background: linear-gradient(rgba(0, 29, 35, .8), rgba(0, 29, 35, .8)), url(../img/carousel-1.jpg) center center no-repeat;
+    background: linear-gradient(rgba(0, 29, 35, 0.8), rgba(0, 29, 35, 0.8)),
+        url(../img/carousel-1.jpg) center center no-repeat;
     background-size: cover;
 }
 
-.page-header .breadcrumb-item+.breadcrumb-item::before {
+.page-header .breadcrumb-item + .breadcrumb-item::before {
     color: #999999;
 }
-
 
 /*** Causes ***/
 .causes-item .progress {
@@ -216,7 +212,7 @@
     justify-content: center;
     font-size: 12px;
     background: var(--primary);
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 .causes-item .causes-overlay {
@@ -228,10 +224,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(0, 0, 0, .5);
+    background: rgba(0, 0, 0, 0.5);
     overflow: hidden;
     opacity: 0;
-    transition: .5s;
+    transition: 0.5s;
 }
 
 .causes-item:hover .causes-overlay {
@@ -239,30 +235,27 @@
     opacity: 1;
 }
 
-
 /*** Service ***/
 .service-item {
-    box-shadow: 0 0 45px rgba(0, 0, 0, .06);
+    box-shadow: 0 0 45px rgba(0, 0, 0, 0.06);
 }
-
 
 /*** Donate ***/
 .donate {
-    background: rgba(0, 29, 35, .8);
+    background: rgba(0, 29, 35, 0.8);
 }
 
 .btn-group .btn-light:hover,
-.btn-group input[type="radio"]:checked+label {
+.btn-group input[type="radio"]:checked + label {
     color: var(--primary);
     border-color: var(--primary);
 }
-
 
 /*** Team ***/
 .team-item img {
     position: relative;
     top: 0;
-    transition: .5s;
+    transition: 0.5s;
 }
 
 .team-item:hover img {
@@ -272,7 +265,7 @@
 .team-item .team-text {
     position: relative;
     height: 100px;
-    transition: .5s;
+    transition: 0.5s;
 }
 
 .team-item:hover .team-text {
@@ -282,7 +275,7 @@
 
 .team-item .team-text .team-social {
     opacity: 0;
-    transition: .5s;
+    transition: 0.5s;
 }
 
 .team-item:hover .team-text .team-social {
@@ -292,15 +285,14 @@
 .team-item .team-social .btn {
     display: inline-flex;
     color: var(--primary);
-    background: #FFFFFF;
+    background: #ffffff;
     border-radius: 40px;
 }
 
 .team-item .team-social .btn:hover {
-    color: #FFFFFF;
+    color: #ffffff;
     background: var(--primary);
 }
-
 
 /*** Testimonial ***/
 .testimonial-carousel::before {
@@ -310,7 +302,11 @@
     left: 0;
     height: 100%;
     width: 0;
-    background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 0) 100%
+    );
     z-index: 1;
 }
 
@@ -321,7 +317,11 @@
     right: 0;
     height: 100%;
     width: 0;
-    background: linear-gradient(to left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(
+        to left,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 0) 100%
+    );
     z-index: 1;
 }
 
@@ -341,8 +341,8 @@
 
 .testimonial-carousel .owl-item .testimonial-text {
     background: var(--light);
-    transform: scale(.8);
-    transition: .5s;
+    transform: scale(0.8);
+    transition: 0.5s;
 }
 
 .testimonial-carousel .owl-item.center .testimonial-text {
@@ -352,7 +352,7 @@
 
 .testimonial-carousel .owl-item .testimonial-text *,
 .testimonial-carousel .owl-item .testimonial-item img {
-    transition: .5s;
+    transition: 0.5s;
 }
 
 .testimonial-carousel .owl-item.center .testimonial-text * {
@@ -361,7 +361,7 @@
 
 .testimonial-carousel .owl-item.center .testimonial-item img {
     background: var(--primary) !important;
-} 
+}
 
 .testimonial-carousel .owl-nav {
     position: absolute;
@@ -372,7 +372,7 @@
     display: flex;
     justify-content: space-between;
     opacity: 0;
-    transition: .5s;
+    transition: 0.5s;
     z-index: 1;
 }
 
@@ -386,7 +386,7 @@
     position: relative;
     color: var(--primary);
     font-size: 45px;
-    transition: .5s;
+    transition: 0.5s;
 }
 
 .testimonial-carousel .owl-nav .owl-prev:hover,
@@ -394,18 +394,36 @@
     color: var(--dark);
 }
 
-
 /*** Footer ***/
+.card-section-structure .card {
+    display: flex;
+    flex-direction: row-reverse; /* Reverse the direction to make image on the right */
+}
+.card-section-structure .card .card-img {
+    width: 100%; /* Adjust the width of the image as needed */
+    max-height: max-content;
+}
+.card-section-structure .card .card-body {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
 
+}
+.card-section-structure .card .card-body .btn{
+    width: 250px;
+
+}
 .footer .btn.btn-link {
     display: block;
     margin-bottom: 5px;
     padding: 0;
     text-align: left;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255, 255, 255, 0.5);
     font-weight: normal;
     text-transform: capitalize;
-    transition: .3s;
+    transition: 0.3s;
 }
 
 .footer .btn.btn-link::before {
@@ -413,7 +431,7 @@
     content: "\f105";
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255, 255, 255, 0.5);
     margin-right: 10px;
 }
 
@@ -424,8 +442,8 @@
 }
 
 .footer .btn.btn-square {
-    color: rgba(255,255,255,0.5);
-    border: 1px solid rgba(255,255,255,0.5);
+    color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .footer .btn.btn-square:hover {
@@ -436,7 +454,7 @@
 .footer .copyright {
     padding: 25px 0;
     font-size: 15px;
-    border-top: 1px solid rgba(256, 256, 256, .1);
+    border-top: 1px solid rgba(256, 256, 256, 0.1);
 }
 
 .footer .copyright a {

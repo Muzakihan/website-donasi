@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('about', [AboutController::class, 'index'])->name('about');
+Route::get('profile', [AboutController::class, 'profile'])->name('profile');
+Route::get('structure', [AboutController::class, 'structure'])->name('structure');
+Route::get('legal-formal', [AboutController::class, 'legalFormal'])->name('legal-formal');
 Route::get('causes', [CausesController::class, 'index'])->name('causes');
 
 Route::get('donation', [DonateController::class, 'index'])->name('donate');
