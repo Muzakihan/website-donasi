@@ -98,3 +98,21 @@ for (i = 0; i < acc.length; i++) {
         }
     });
 }
+const btnWhatsApp = document.querySelector('.btn-whatsapp-pulse');
+const modalText = document.querySelector('.modal-text');
+
+btnWhatsApp.addEventListener('mouseover', () => {
+    modalText.style.display = 'block';
+});
+
+btnWhatsApp.addEventListener('mouseout', () => {
+    modalText.style.display = 'none';
+});
+
+modalText.addEventListener('mouseover', () => {
+    modalText.style.display = 'block';
+});
+
+modalText.addEventListener('mouseout', () => {
+    modalText.style.display = 'none';
+});

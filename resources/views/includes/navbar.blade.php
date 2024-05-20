@@ -32,16 +32,23 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
-                    <a href="{{ route('home') }}" class="nav-item nav-link active">Home</a>
+                    <a href="{{ route('home') }}" class="nav-item nav-link active">Beranda</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">About</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Tentang Kami</a>
                         <div class="dropdown-menu m-0">
                             <a href="{{ route('profile') }}" class="dropdown-item">Profile</a>
                             <a href="{{ route('structure') }}" class="dropdown-item">Structure</a>
                             <a href="{{ route('legal-formal') }}" class="dropdown-item">Legal Formal</a>
                         </div>
                     </div>
-
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Layanan</a>
+                        <div class="dropdown-menu m-0">
+                            <a href="{{ route('kantor-layanan') }}" class="dropdown-item">Kantor Layanan</a>
+                            <a href="{{ route('jemput-layanan') }}" class="dropdown-item">Jemput Zakat</a>
+                            <a href="{{ route('rekening-donasi') }}" class="dropdown-item">Rekening Donasi</a>
+                        </div>
+                    </div>
                     <a href="{{ route('causes') }}" class="nav-item nav-link">Causes</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>

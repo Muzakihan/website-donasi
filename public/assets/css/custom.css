@@ -64,3 +64,54 @@
 .faq.active {
     border: none;
 }
+  .btn-whatsapp-pulse {
+      background: #25d366;
+      color: white;
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      font-size: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 70px;
+      height: 70px;
+      text-decoration: none;
+      border-radius: 50%;
+      animation-name: pulse;
+      animation-duration: 1.5s;
+      animation-timing-function: ease-out;
+      animation-iteration-count: infinite;
+      transition: width 0.3s ease, height 0.3s ease;
+    }
+    .btn-whatsapp-pulse,
+    .btn-whatsapp-pulse i:hover{
+        color: white;
+    }
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+      }
+      80% {
+        box-shadow: 0 0 0 14px rgba(37, 211, 102, 0);
+      }
+    }
+
+    .modal-text {
+      display: none;
+      position: fixed;
+      bottom: 100px;
+      left: 20px;
+      background: #25d365d2;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      z-index: 10;
+      transition: opacity 0.3s ease;
+    }
+
+    .btn-whatsapp-pulse:hover + .modal-text,
+    .modal-text:hover {
+      display: block;
+      opacity: 1;
+    }

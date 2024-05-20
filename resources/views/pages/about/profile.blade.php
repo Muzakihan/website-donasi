@@ -97,11 +97,11 @@
                 <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Visi</div>
                 <h1 class="display-6 mb-5">Visi Yayasan Kami</h1>
             </div>
-            <div class="row g-4 justify-content-center py-2" style="max-width:800px; margin: 0 auto;">
+            <div class="row g-4 justify-content-center py-2 wow fadeInUp" data-wow-delay="0.1s"  style="max-width:1000px; margin: 0 auto;">
                 <div class="bg-light border-bottom border-5 border-primary rounded p-4">
-                    <h4 class="text-dark mb-2 text-center">"Menjadi Lembaga terpercaya dalam menciptakan generasi anak yatim
+                    <h3 class="text-dark mb-2 text-center">"Menjadi Lembaga terpercaya dalam menciptakan generasi anak yatim
 dan dhu’afa mandiri yang berakhlaqul karimah"
-</h4>
+</h3>
                 </div>
             </div>
         </div>

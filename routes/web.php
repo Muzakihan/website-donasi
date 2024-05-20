@@ -14,9 +14,15 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
 Route::get('profile', [AboutController::class, 'profile'])->name('profile');
 Route::get('structure', [AboutController::class, 'structure'])->name('structure');
 Route::get('legal-formal', [AboutController::class, 'legalFormal'])->name('legal-formal');
+
+Route::get('rekening-donasi', [ServiceController::class, 'rekeningDonasi'])->name('rekening-donasi');
+Route::get('jemput-layanan', [ServiceController::class, 'jemputLayanan'])->name('jemput-layanan');
+Route::get('kantor-layanan', [ServiceController::class, 'kantorLayanan'])->name('kantor-layanan');
+
 Route::get('causes', [CausesController::class, 'index'])->name('causes');
 
 Route::get('donation', [DonateController::class, 'index'])->name('donate');
