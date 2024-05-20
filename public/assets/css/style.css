@@ -409,11 +409,9 @@
     flex-direction: column;
     height: 100%;
     justify-content: space-between;
-
 }
-.card-section-structure .card .card-body .btn{
+.card-section-structure .card .card-body .btn {
     width: 250px;
-
 }
 .footer .btn.btn-link {
     display: block;
@@ -463,4 +461,10 @@
 
 .footer .copyright a:hover {
     color: var(--primary);
+}
+
+.logo {
+    padding: 5px 5px 0 0;
+    width: 100px;
+    height: 100px;
 }
