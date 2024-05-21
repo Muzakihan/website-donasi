@@ -33,7 +33,7 @@
                             href="https://htmlcodex.com/contact-form">Download Now</a>.</p>
 
                     <p><b>Alamat :</b></p>
-                    <p>RUKO SABAR GANDA BLOK C: NO 6 JALAN KSR DADI KUSMAYADI, CIBINONG, KABUPATEN BOGOR</p>
+                    <p>Yayasan Anshor Yatim & Dhuafa, Jl. Griya Indah Serpong No.14 Blok V1, Cibinong, Kec. Gn. Sindur, Kabupaten Bogor, Jawa Barat 16340</p>
                     <p><b>Sosial Media :</b></p>
                     <div class="d-flex gap-2">
                         <a class="btn btn-outline-primary py-2 px-3" href="">

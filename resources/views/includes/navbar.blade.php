@@ -53,6 +53,14 @@
                             <a href="{{ route('rekening-donasi') }}" class="dropdown-item">Rekening Donasi</a>
                         </div>
                     </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Publikasi</a>
+                        <div class="dropdown-menu m-0">
+                            <a href="{{ route('event') }}" class="dropdown-item">Event</a>
+                            <a href="{{ route('article') }}" class="dropdown-item">Artikel</a>
+                            <a href="{{ route('laporan-keuangan') }}" class="dropdown-item">Laporan Keuangan</a>
+                        </div>
+                    </div>
                     <a href="{{ route('causes') }}" class="nav-item nav-link">Causes</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>

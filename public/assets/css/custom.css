@@ -115,3 +115,7 @@
       display: block;
       opacity: 1;
     }
+
+    .header-single-post img{
+        border-radius: 40px;
+    }

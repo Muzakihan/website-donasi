@@ -7,6 +7,7 @@ use App\Http\Controllers\DonateController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OurTeamController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\PublicationController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -22,6 +23,11 @@ Route::get('legal-formal', [AboutController::class, 'legalFormal'])->name('legal
 Route::get('rekening-donasi', [ServiceController::class, 'rekeningDonasi'])->name('rekening-donasi');
 Route::get('jemput-layanan', [ServiceController::class, 'jemputLayanan'])->name('jemput-layanan');
 Route::get('kantor-layanan', [ServiceController::class, 'kantorLayanan'])->name('kantor-layanan');
+
+Route::get('event', [PublicationController::class, 'event'])->name('event');
+Route::get('article', [PublicationController::class, 'article'])->name('article');
+Route::get('laporan-keuangan', [PublicationController::class, 'laporanKeuangan'])->name('laporan-keuangan');
+Route::get('article-single', [PublicationController::class, 'singleArticle'])->name('article-single');
 
 Route::get('causes', [CausesController::class, 'index'])->name('causes');
 
