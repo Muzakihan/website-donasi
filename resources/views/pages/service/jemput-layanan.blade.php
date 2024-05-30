@@ -7,8 +7,7 @@
 @section('content')
     <div class="container-fluid page-header mb-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container text-center">
-            <h1 class="display-4 text-white animated slideInDown mb-4">Rekening Donasi
-            </h1>
+            <h1 class="display-4 text-white animated slideInDown mb-4">Jemput Zakat</h1>
             <nav aria-label="breadcrumb animated slideInDown">
                 <ol class="breadcrumb justify-content-center mb-0">
                     <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
@@ -29,8 +28,9 @@
                             </div>
                             <h1 class="display-6 text-white mb-5">Kemudahan Anda dalam menunaikan zakat</h1>
                             <p class="text-white-50 mb-0">
-                                Silakan hubungi Layanan Jemput Donasi ICG atau Indonesia Beramal ID melalui WhatsApp Center kami.
-                                 Klik tombol di bawah dan Mohon informasikan nama dan alamat lengkap penjemputan donasi Anda
+                                Silakan hubungi Layanan Jemput Donasi ICG atau Indonesia Beramal ID melalui WhatsApp Center
+                                kami.
+                                Klik tombol di bawah dan Mohon informasikan nama dan alamat lengkap penjemputan donasi Anda
                             </p>
                         </div>
                         <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
@@ -45,11 +45,11 @@
     </div>
 
     <a href="" class="btn-whatsapp-pulse">
-        
-	    <i class="fab fa-whatsapp"></i>
+
+        <i class="fab fa-whatsapp"></i>
     </a>
     <div class="modal-text">
-    Chat with us on WhatsApp!
-  </div>
+        Chat with us on WhatsApp!
+    </div>
     <!-- Team End -->
 @endsection

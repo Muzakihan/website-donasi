@@ -8,12 +8,12 @@
     <!-- Page Header Start -->
     <div class="container-fluid page-header mb-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container text-center">
-            <h1 class="display-4 text-white animated slideInDown mb-4">Profile</h1>
+            <h1 class="display-4 text-white animated slideInDown mb-4">Profil</h1>
             <nav aria-label="breadcrumb animated slideInDown">
                 <ol class="breadcrumb justify-content-center mb-0">
                     <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
-                    <li class="breadcrumb-item text-primary active" aria-current="page">Profile</li>
+                    <li class="breadcrumb-item"><a class="text-white" href="#">Tentang Kami</a></li>
+                    <li class="breadcrumb-item text-primary active" aria-current="page">Profil</li>
                 </ol>
             </nav>
         </div>
@@ -97,7 +97,8 @@
                 <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Visi</div>
                 <h1 class="display-6 mb-5">Visi Yayasan Kami</h1>
             </div>
-            <div class="row g-4 justify-content-center py-2 wow fadeInUp" data-wow-delay="0.1s"  style="max-width:1000px; margin: 0 auto;">
+            <div class="row g-4 justify-content-center py-2 wow fadeInUp" data-wow-delay="0.1s"
+                style="max-width:1000px; margin: 0 auto;">
                 <div class="bg-light border-bottom border-5 border-primary rounded p-4">
                     <h4 class="text-dark mb-2 text-center">"Menjadi Lembaga terpercaya dalam menciptakan generasi anak yatim
                         dan dhu’afa mandiri yang berakhlaqul karimah"
@@ -158,7 +159,7 @@
                             Yayasan Anshor Yatim & Dhuafa. Klik di sini
                             untuk melihat lebih lanjut.</p>
                         <a class="btn btn-primary py-2 px-3 me-3 wow fadeInUp" data-wow-delay="0.5s"
-                            href="{{ route('structure') }}">
+                            href="{{ route('struktur') }}">
                             Learn More
                             <div class="d-inline-flex btn-sm-square bg-white text-primary rounded-circle ms-2">
                                 <i class="fa fa-arrow-right"></i>

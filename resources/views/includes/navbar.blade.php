@@ -26,7 +26,7 @@
             <a href="{{ route('home') }}" class="navbar-brand ms-4 ms-lg-0">
                 <h1>
                     <img class="logo" src="{{ asset('assets/img/logo.png') }}" alt=""><span
-                        class="fw-bold text-white">AYD</span>
+                        class="fw-bold text-white">Anshor Yatim Dhuafa</span>
                 </h1>
             </a>
             <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse"
@@ -39,8 +39,8 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Tentang Kami</a>
                         <div class="dropdown-menu m-0">
-                            <a href="{{ route('profile') }}" class="dropdown-item">Profile</a>
-                            <a href="{{ route('structure') }}" class="dropdown-item">Structure</a>
+                            <a href="{{ route('profil') }}" class="dropdown-item">Profil</a>
+                            <a href="{{ route('struktur') }}" class="dropdown-item">Struktur</a>
                             <a href="{{ route('legal-formal') }}" class="dropdown-item">Legal Formal</a>
                         </div>
                     </div>
@@ -53,23 +53,21 @@
                         </div>
                     </div>
                     <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Program</a>
+                        <div class="dropdown-menu m-0">
+                            <a href="{{ route('service') }}" class="dropdown-item">AYD Sehat</a>
+                            <a href="{{ route('donate') }}" class="dropdown-item">AYD Cerdas</a>
+                            <a href="{{ route('team') }}" class="dropdown-item">AYD Mandiri</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Publikasi</a>
                         <div class="dropdown-menu m-0">
                             <a href="{{ route('event') }}" class="dropdown-item">Event</a>
-                            <a href="{{ route('article') }}" class="dropdown-item">Artikel</a>
+                            <a href="{{ route('artikel') }}" class="dropdown-item">Artikel</a>
                             <a href="{{ route('laporan-keuangan') }}" class="dropdown-item">Laporan Keuangan</a>
                         </div>
                     </div>
-                    <a href="{{ route('causes') }}" class="nav-item nav-link">Causes</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                        <div class="dropdown-menu m-0">
-                            <a href="{{ route('service') }}" class="dropdown-item">Service</a>
-                            <a href="{{ route('donate') }}" class="dropdown-item">Donate</a>
-                            <a href="{{ route('team') }}" class="dropdown-item">Our Team</a>
-                        </div>
-                    </div>
-                    <a href="{{ route('contact') }}" class="nav-item nav-link">Contact</a>
                 </div>
                 <div class="d-none d-lg-flex ms-2">
                     <a class="btn btn-outline-primary py-2 px-3" href="{{ route('donate') }}">

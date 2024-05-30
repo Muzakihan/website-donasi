@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('profile', [AboutController::class, 'profile'])->name('profile');
-Route::get('structure', [AboutController::class, 'structure'])->name('structure');
+Route::get('profil', [AboutController::class, 'profile'])->name('profil');
+Route::get('struktur', [AboutController::class, 'structure'])->name('struktur');
 Route::get('legal-formal', [AboutController::class, 'legalFormal'])->name('legal-formal');
 
 Route::get('rekening-donasi', [ServiceController::class, 'rekeningDonasi'])->name('rekening-donasi');
@@ -25,9 +25,9 @@ Route::get('jemput-layanan', [ServiceController::class, 'jemputLayanan'])->name(
 Route::get('kantor-layanan', [ServiceController::class, 'kantorLayanan'])->name('kantor-layanan');
 
 Route::get('event', [PublicationController::class, 'event'])->name('event');
-Route::get('article', [PublicationController::class, 'article'])->name('article');
+Route::get('artikel', [PublicationController::class, 'article'])->name('artikel');
 Route::get('laporan-keuangan', [PublicationController::class, 'laporanKeuangan'])->name('laporan-keuangan');
-Route::get('article-single', [PublicationController::class, 'singleArticle'])->name('article-single');
+Route::get('detail', [PublicationController::class, 'singleArticle'])->name('article-single');
 
 Route::get('causes', [CausesController::class, 'index'])->name('causes');
 
@@ -39,4 +39,3 @@ Route::get('/success', [DonateController::class, 'success'])->name('success');
 Route::get('team', [OurTeamController::class, 'index'])->name('team');
 Route::get('contact', [ContacController::class, 'index'])->name('contact');
 Route::get('service', [ServiceController::class, 'index'])->name('service');
-
