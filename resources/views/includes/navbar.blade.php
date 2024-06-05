@@ -9,12 +9,12 @@
     <!-- Navbar Start -->
     <div class="container-fluid fixed-top px-0 wow fadeIn" data-wow-delay="0.1s">
         <div class="top-bar text-white-50 row gx-0 align-items-center d-none d-lg-flex">
-            <div class="col-lg-6 px-5 text-start">
+            <div class="col-lg-8 px-5 text-start">
                 <small><i class="fa fa-map-marker-alt me-2"></i>Jl. Griya Indah Serpong, Cibinong, Kec. Gn. Sindur, Kab
                     Bogor, Jawa Barat</small>
                 <small class="ms-4"><i class="fa fa-envelope me-2"></i>anshoryatimdhuafa@gmail.com</small>
             </div>
-            <div class="col-lg-6 px-5 text-end">
+            <div class="col-lg-4 px-5 text-end">
                 <small>Follow us:</small>
                 <a class="text-white-50 ms-3"
                     href="https://www.instagram.com/anshor_yatim_dhuafa?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
