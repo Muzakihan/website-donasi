@@ -9,16 +9,12 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
 <!-- Libraries Stylesheet -->
-@if(app()->environment('production'))
-    <link href="{{ secure_asset('assets/lib/animate/animate.min.css') }}" rel="stylesheet">
-    <link href="{{ secure_asset('assets/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
-    <link href="{{ secure_asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ secure_asset('assets/css/style.css') }}" rel="stylesheet">
-    <link href="{{ secure_asset('assets/css/custom.css') }}" rel="stylesheet">
-@else
-    <link href="{{ asset('assets/lib/animate/animate.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet">
-@endif
+<link href="{{ secure_asset('assets/lib/animate/animate.min.css') }}" rel="stylesheet">
+<link href="{{ secure_asset('assets/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+
+<!-- Customized Bootstrap Stylesheet -->
+<link href="{{ secure_asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+
+<!-- Template Stylesheet -->
+<link href="{{ secure_asset('assets/css/style.css') }}" rel="stylesheet">
+<link href="{{ secure_asset('assets/css/custom.css') }}" rel="stylesheet">
