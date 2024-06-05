@@ -123,24 +123,29 @@
                             class="causes-item d-flex flex-column bg-white border-top border-5 border-primary rounded-top overflow-hidden h-100">
                             <div class="text-center p-4 pt-0">
                                 <div class="d-inline-block bg-primary text-white rounded-bottom fs-5 pb-1 px-3 mb-4">
-                                    <small>{{$item->category->name}}</small>
+                                    <small>{{ $item->category->name }}</small>
                                 </div>
-                                <h5 class="mb-3">{{$item->name}}</h5>
+                                <h5 class="mb-3">{{ $item->name }}</h5>
                                 <p>{!! $item->thumbnail_description !!}</p>
                                 <div class="causes-progress bg-light p-3 pt-2">
                                     <div class="d-flex justify-content-between">
-                                        <p class="text-dark">{{ number_format($item->goal_price) }} <small class="text-body">Goal</small></p>
-                                        <p class="text-dark">{{ number_format($item->current_price) }} <small class="text-body">Raised</small></p>
+                                        <p class="text-dark">{{ number_format($item->goal_price) }} <small
+                                                class="text-body">Goal</small></p>
+                                        <p class="text-dark">{{ number_format($item->current_price) }} <small
+                                                class="text-body">Raised</small></p>
                                     </div>
                                     <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: {{ ($item->current_price / $item->goal_price) * 100 }}%;" aria-valuenow="{{ ($item->current_price / $item->goal_price) * 100 }}" aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar" role="progressbar"
+                                            style="width: {{ ($item->current_price / $item->goal_price) * 100 }}%;"
+                                            aria-valuenow="{{ ($item->current_price / $item->goal_price) * 100 }}"
+                                            aria-valuemin="0" aria-valuemax="100">
                                             <span>{{ round(($item->current_price / $item->goal_price) * 100) }}%</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="position-relative mt-auto">
-                                <img class="img-fluid" src="{{Storage::url($item->photos)}}" alt="">
+                                <img class="img-fluid" src="{{ Storage::url($item->photos) }}" alt="">
                                 <div class="causes-overlay">
                                     <a class="btn btn-outline-primary" href="">
                                         Read More
@@ -228,7 +233,7 @@
                 </div>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                     <div class="h-100 bg-white p-5">
-                        <form method="post" action="{{route('donate.store')}}" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('donate.store') }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="row g-3">
@@ -249,7 +254,8 @@
                                 <div class="col-12">
                                     <div class="form-floating">
                                         <select id="products_id" name="products_id"
-                                            class="form-control bg-light border-0" style="padding-top: 0 !important; padding-bottom: 0 !important">
+                                            class="form-control bg-light border-0"
+                                            style="padding-top: 0 !important; padding-bottom: 0 !important">
                                             <option value="">Choose Campaign</option>
                                             @foreach ($products as $item)
                                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -259,13 +265,16 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="btn-group d-flex justify-content-around">
-                                        <input type="radio" class="btn-check" name="donate_price" id="donate_price1" value="10000" checked>
+                                        <input type="radio" class="btn-check" name="donate_price" id="donate_price1"
+                                            value="10000" checked>
                                         <label class="btn btn-light py-3" for="donate_price1">Rp.10.000</label>
 
-                                        <input type="radio" class="btn-check" name="donate_price" id="donate_price2" value="20000">
+                                        <input type="radio" class="btn-check" name="donate_price" id="donate_price2"
+                                            value="20000">
                                         <label class="btn btn-light py-3" for="donate_price2">Rp.20.000</label>
 
-                                        <input type="radio" class="btn-check" name="donate_price" id="donate_price3" value="30000">
+                                        <input type="radio" class="btn-check" name="donate_price" id="donate_price3"
+                                            value="30000">
                                         <label class="btn btn-light py-3" for="donate_price3">Rp.30.000</label>
                                     </div>
                                 </div>

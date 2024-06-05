@@ -1,0 +1,121 @@
+:root {
+    --primary: #ff6f0f;
+    --primary-blur: #fc813050;
+    --secondary: #fff0e6;
+    --light: #f8f8f9;
+    --dark: #001d23;
+}
+.card {
+    border: none; /* Menghapus border */
+}
+.card-img-top {
+    border-radius: 20px; /* Mengatur radius gambar */
+}
+.card-title {
+    color: orange;
+}
+.accordion {
+    background-color: white;
+    color: rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+    font-size: 1.2rem;
+    width: 100%;
+    padding: 2rem 2.5rem;
+    border: 2px solid var(--dark);
+    border-radius: 10px;
+    outline: none;
+    transition: 0.4s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+
+.accordion i {
+    font-size: 1.6rem;
+}
+
+.accordion .active,
+.accordion:hover {
+    background-color:var(--dark);
+    border: 2px solid var(--light);
+    color: white;
+    border-radius: 20px;
+}
+.pannel {
+    padding: 30px;
+    border-radius: 10px;
+    border-radius: 10px;
+    background-color: white;
+    overflow: hidden;
+    background-color: var(--dark);
+    display: none;
+}
+.pannel p {
+    color: var(--light);
+    font-size: 1.2rem;
+    line-height: 1.4;
+}
+
+.faq {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    margin: 10px 0;
+}
+.faq.active {
+    border: none;
+}
+  .btn-whatsapp-pulse {
+      background: #25d366;
+      color: white;
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      font-size: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 70px;
+      height: 70px;
+      text-decoration: none;
+      border-radius: 50%;
+      animation-name: pulse;
+      animation-duration: 1.5s;
+      animation-timing-function: ease-out;
+      animation-iteration-count: infinite;
+      transition: width 0.3s ease, height 0.3s ease;
+    }
+    .btn-whatsapp-pulse,
+    .btn-whatsapp-pulse i:hover{
+        color: white;
+    }
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+      }
+      80% {
+        box-shadow: 0 0 0 14px rgba(37, 211, 102, 0);
+      }
+    }
+
+    .modal-text {
+      display: none;
+      position: fixed;
+      bottom: 100px;
+      left: 20px;
+      background: #25d365d2;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      z-index: 10;
+      transition: opacity 0.3s ease;
+    }
+
+    .btn-whatsapp-pulse:hover + .modal-text,
+    .modal-text:hover {
+      display: block;
+      opacity: 1;
+    }
+
+    .header-single-post img{
+        border-radius: 40px;
+    }

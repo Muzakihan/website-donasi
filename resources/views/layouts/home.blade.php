@@ -9,6 +9,8 @@
 
     <title>@yield('title')</title>
 
+    <link rel="icon" href="{{ asset('assets/img/favicon.ico') }}" type="image/x-icon">
+
     {{-- style link --}}
     @stack('prepend-style')
     @include('includes.style')
