@@ -30,6 +30,8 @@ class ProductResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-s-clipboard-document';
 
+    protected static ?string $navigationGroup = 'Donasi';
+
     public static function form(Form $form): Form
     {
         return $form

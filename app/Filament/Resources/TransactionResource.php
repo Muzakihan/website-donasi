@@ -25,6 +25,8 @@ class TransactionResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-currency-dollar';
 
+    protected static ?string $navigationGroup = 'Donasi';
+
     public static function form(Form $form): Form
     {
         return $form
