@@ -2,29 +2,28 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\CategoryDonateResource\Pages;
+use App\Filament\Resources\CategoryDonateResource\RelationManagers;
+use App\Models\CategoryDonate;
 use Filament\Forms;
-use Filament\Tables;
-use App\Models\Category;
-use Filament\Forms\Form;
-use Filament\Tables\Table;
-use Filament\Resources\Resource;
-use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Illuminate\Database\Eloquent\Builder;
-use App\Filament\Resources\CategoryResource\Pages;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\CategoryResource\RelationManagers;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class CategoryResource extends Resource
+class CategoryDonateResource extends Resource
 {
-    protected static ?string $model = Category::class;
+    protected static ?string $model = CategoryDonate::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationGroup = 'Donasi';
+    protected static ?string $navigationGroup = 'Donate';
 
     public static function form(Form $form): Form
     {
@@ -75,9 +74,9 @@ class CategoryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCategories::route('/'),
-            'create' => Pages\CreateCategory::route('/create'),
-            'edit' => Pages\EditCategory::route('/{record}/edit'),
+            'index' => Pages\ListCategoryDonates::route('/'),
+            'create' => Pages\CreateCategoryDonate::route('/create'),
+            'edit' => Pages\EditCategoryDonate::route('/{record}/edit'),
         ];
     }
 }

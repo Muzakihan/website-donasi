@@ -2,35 +2,33 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ProductResource\Pages;
-use App\Filament\Resources\ProductResource\RelationManagers;
-use App\Models\Category;
-use App\Models\Product;
+use App\Filament\Resources\DonateResource\Pages;
+use App\Filament\Resources\DonateResource\RelationManagers;
+use App\Models\CategoryDonate;
+use App\Models\Donate;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\ImageColumn;
-use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class ProductResource extends Resource
+class DonateResource extends Resource
 {
-    protected static ?string $model = Product::class;
+    protected static ?string $model = Donate::class;
 
     protected static ?string $navigationIcon = 'heroicon-s-clipboard-document';
 
-    protected static ?string $navigationGroup = 'Donasi';
+    protected static ?string $navigationGroup = 'Donate';
 
     public static function form(Form $form): Form
     {
@@ -46,7 +44,7 @@ class ProductResource extends Resource
                         TextInput::make('name')->required(),
                         Select::make('categories_id')
                             ->label('Category')
-                            ->options(Category::all()->pluck('name', 'id')),
+                            ->options(CategoryDonate::all()->pluck('name', 'id')),
                         RichEditor::make('thumbnail_description')->required(),
                         RichEditor::make('description')->required(),
                         Textarea::make('goal_price')->required(),
@@ -89,9 +87,9 @@ class ProductResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListProducts::route('/'),
-            'create' => Pages\CreateProduct::route('/create'),
-            'edit' => Pages\EditProduct::route('/{record}/edit'),
+            'index' => Pages\ListDonates::route('/'),
+            'create' => Pages\CreateDonate::route('/create'),
+            'edit' => Pages\EditDonate::route('/{record}/edit'),
         ];
     }
 }

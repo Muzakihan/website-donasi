@@ -5,28 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Product extends Model implements HasMedia
+class Program extends Model
 {
     // use HasFactory;
     use SoftDeletes, InteractsWithMedia;
 
     protected $fillable = [
-        'categories_id', 
-        'name', 
-        'thumbnail_description', 
-        'description', 
-        'goal_price' , 
-        'current_price',
-        'photos',
+        'category_program_id',
+        'title',
+        'content',
+        'photos'
     ];
 
     protected $hidden = [];
 
-    public function category()
+    public function categoryProgram()
     {
-        return $this->belongsTo(Category::class, 'categories_id', 'id');
+        return $this->belongsTo(CategoryProgram::class, 'category_program_id', 'id');
     }
 }

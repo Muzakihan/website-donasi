@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transactions', function (Blueprint $table) {
+        Schema::create('category_articles', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('donate_id');
-            $table->string('username');
-            $table->string('email')->nullable();
-            $table->longText('description')->nullable();
-            $table->integer('donate_price');
+            $table->string('name');
+            $table->string('slug')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('transactions');
+        Schema::dropIfExists('category_articles');
     }
 };
