@@ -117,7 +117,7 @@
                 <h1 class="display-6 mb-5">Every Child Deserves The Opportunity To Learn</h1>
             </div>
             <div class="row g-4 justify-content-center">
-                @foreach ($products as $item)
+                {{-- @foreach ($products as $item)
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div
                             class="causes-item d-flex flex-column bg-white border-top border-5 border-primary rounded-top overflow-hidden h-100">
@@ -157,7 +157,7 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
+                @endforeach --}}
             </div>
         </div>
     </div>
@@ -257,9 +257,9 @@
                                             class="form-control bg-light border-0"
                                             style="padding-top: 0 !important; padding-bottom: 0 !important">
                                             <option value="">Choose Campaign</option>
-                                            @foreach ($products as $item)
+                                            {{-- @foreach ($products as $item)
                                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                            @endforeach
+                                            @endforeach --}}
                                         </select>
                                     </div>
                                 </div>

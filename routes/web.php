@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OurTeamController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\PublicationController;
+use App\Http\Controllers\ProgramController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -30,6 +31,10 @@ Route::get('laporan-keuangan', [PublicationController::class, 'laporanKeuangan']
 Route::get('detail', [PublicationController::class, 'singleArticle'])->name('article-single');
 
 Route::get('causes', [CausesController::class, 'index'])->name('causes');
+
+Route::get('ayd-sehat', [ProgramController::class, 'aydSehat'])->name('ayd-sehat');
+Route::get('ayd-cerdas', [ProgramController::class, 'aydCerdas'])->name('ayd-cerdas');
+Route::get('ayd-mandiri', [ProgramController::class, 'aydMandiri'])->name('ayd-mandiri');
 
 Route::get('donation', [DonateController::class, 'index'])->name('donate');
 Route::post('donation/store', [DonateController::class, 'store'])->name('donate.store');
