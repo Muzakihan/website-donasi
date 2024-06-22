@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('category_program_id');
             $table->string('title');
-            $table->longText('content');
+            $table->longText('description');
+            $table->longText('program_objective');
             $table->string('photos');
             $table->timestamps();
         });
