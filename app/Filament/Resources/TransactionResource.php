@@ -41,7 +41,7 @@ class TransactionResource extends Resource
                     ->schema([
                         TextInput::make('username')->label('username')->required(),
                         TextInput::make('email')->required(),
-                        Select::make('doante_id')
+                        Select::make('donate_id')
                             ->label('Donate')
                             ->options(Donate::all()->pluck('name', 'id'))
                             ->required(),
@@ -58,7 +58,10 @@ class TransactionResource extends Resource
                 TextColumn::make('username')->sortable()->searchable(),
                 TextColumn::make('email')->sortable()->searchable(),
                 TextColumn::make('donate.name')->sortable()->searchable(),
-                TextColumn::make('donate_price')->sortable()->searchable()->money('IDR'),
+                TextColumn::make('donate_price')
+                    ->sortable()
+                    ->searchable()
+                    ->money('IDR'),
 
             ])
             ->filters([

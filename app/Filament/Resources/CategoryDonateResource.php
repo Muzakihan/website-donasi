@@ -37,7 +37,6 @@ class CategoryDonateResource extends Resource
                 ])
                     ->schema([
                         TextInput::make('name')->required(),
-                        Textarea::make('description')->required()
                     ])
                     ->columns(2),
             ]);
@@ -48,7 +47,6 @@ class CategoryDonateResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')->sortable()->searchable(),
-                TextColumn::make('description')->sortable()->searchable()
             ])
             ->filters([
                 //

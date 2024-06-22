@@ -28,4 +28,5 @@ class Donate extends Model
     {
         return $this->belongsTo(CategoryDonate::class, 'category_donate_id', 'id');
     }
+    
 }

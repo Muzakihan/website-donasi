@@ -21,6 +21,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Storage;
 
 class DonateResource extends Resource
 {
@@ -42,25 +43,44 @@ class DonateResource extends Resource
                 ])
                     ->schema([
                         TextInput::make('name')->required(),
-                        Select::make('categories_id')
-                            ->label('Category')
-                            ->options(CategoryDonate::all()->pluck('name', 'id')),
+                        Select::make('category_donate_id')
+                            ->label('Category Donate')
+                            ->options(CategoryDonate::all()->pluck('name', 'id'))
+                            ->required(),
                         RichEditor::make('thumbnail_description')->required(),
                         RichEditor::make('description')->required(),
                         Textarea::make('goal_price')->required(),
-                        FileUpload::make('photos'),
+                        FileUpload::make('photos')
+                            ->directory('Donate')
+                            ->image()
+                            ->imageEditor()
+                            ->deleteUploadedFileUsing(function ($file) {
+                                Storage::delete($file);
+                            }),
                     ])
             ]);
     }
+
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
                 TextColumn::make('name')->sortable()->searchable(),
-                TextColumn::make('category.name')->sortable()->searchable(),
-                TextColumn::make('goal_price')->sortable()->searchable()->money('IDR'),
-                TextColumn::make('current_price')->sortable()->searchable()->money('IDR'),
+                TextColumn::make('categorydonate.name')
+                    ->label("Category Donate")
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('goal_price')
+                    ->label("Goal Price")
+                    ->sortable()
+                    ->searchable()
+                    ->money('IDR'),
+                TextColumn::make('current_price')
+                    ->label("Current Price")
+                    ->sortable()
+                    ->searchable()
+                    ->money('IDR'),
                 ImageColumn::make('photos')
             ])
             ->filters([
