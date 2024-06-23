@@ -15,6 +15,7 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Support\RawJs;
 use Filament\Tables;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -47,16 +48,21 @@ class DonateResource extends Resource
                             ->label('Category Donate')
                             ->options(CategoryDonate::all()->pluck('name', 'id'))
                             ->required(),
-                        RichEditor::make('thumbnail_description')->required(),
+                        RichEditor::make('thumbnail_description')
+                            ->disableToolbarButtons(['attachFiles'])
+                            ->required(),
                         RichEditor::make('description')->required(),
-                        Textarea::make('goal_price')->required(),
+                        TextInput::make('goal_price')
+                            ->mask(RawJs::make('$money($input)'))
+                            ->stripCharacters('.')
+                            ->prefix('Rp ')
+                            ->numeric()
+                            ->required(),
                         FileUpload::make('photos')
-                            ->directory('Donate')
                             ->image()
                             ->imageEditor()
-                            ->deleteUploadedFileUsing(function ($file) {
-                                Storage::delete($file);
-                            }),
+                            ->openable()
+                            ->directory('donate')
                     ])
             ]);
     }
@@ -75,12 +81,24 @@ class DonateResource extends Resource
                     ->label("Goal Price")
                     ->sortable()
                     ->searchable()
-                    ->money('IDR'),
+                    ->getStateUsing(function ($record) {
+                        if ($record->goal_price !== NULL) {
+                            return 'Rp ' . number_format($record->goal_price, 0, ',', '.');
+                        } else {
+                            return false;
+                        }
+                    }),
                 TextColumn::make('current_price')
                     ->label("Current Price")
                     ->sortable()
                     ->searchable()
-                    ->money('IDR'),
+                    ->getStateUsing(function ($record) {
+                        if ($record->current_price !== NULL) {
+                            return 'Rp ' . number_format($record->current_price, 0, ',', '.');
+                        } else {
+                            return false;
+                        }
+                    }),
                 ImageColumn::make('photos')
             ])
             ->filters([

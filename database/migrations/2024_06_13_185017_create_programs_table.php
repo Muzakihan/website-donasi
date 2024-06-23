@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->longText('description');
             $table->longText('program_objective');
-            $table->string('photos');
+            $table->longText('photos');
             $table->timestamps();
         });
     }

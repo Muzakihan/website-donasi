@@ -14,6 +14,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Support\RawJs;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -40,13 +41,22 @@ class TransactionResource extends Resource
                 ])
                     ->schema([
                         TextInput::make('username')->label('username')->required(),
-                        TextInput::make('email')->required(),
+                        TextInput::make('email')
+                            ->email()
+                            ->required(),
                         Select::make('donate_id')
                             ->label('Donate')
                             ->options(Donate::all()->pluck('name', 'id'))
                             ->required(),
-                        RichEditor::make('description')->required(),
-                        TextInput::make('donate_price')->required()
+                        RichEditor::make('description')
+                            ->disableToolbarButtons(['attachFiles'])
+                            ->required(),
+                        TextInput::make('donate_price')
+                            ->mask(RawJs::make('$money($input)'))
+                            ->stripCharacters('.')
+                            ->numeric()
+                            ->prefix('Rp ')
+                            ->required(),
                     ])
             ]);
     }
@@ -61,8 +71,13 @@ class TransactionResource extends Resource
                 TextColumn::make('donate_price')
                     ->sortable()
                     ->searchable()
-                    ->money('IDR'),
-
+                    ->getStateUsing(function ($record) {
+                        if ($record->donate_price !== NULL) {
+                            return 'Rp ' . number_format($record->donate_price, 0, ',', '.');
+                        } else {
+                            return false;
+                        }
+                    }),
             ])
             ->filters([
                 //

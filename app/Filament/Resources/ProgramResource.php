@@ -21,6 +21,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Storage;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class ProgramResource extends Resource
 {
@@ -57,10 +58,21 @@ class ProgramResource extends Resource
                             ->image()
                             ->imageEditor()
                             ->directory('program')
-                            ->preserveFilenames()
-                        // ->deleteUploadedFileUsing(function ($file) {
-                        //     Storage::delete($file);
-                        // }),
+                            ->reorderable()
+                            ->appendFiles()
+                            ->openable()
+                            ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file) {
+                                // $categoryProgramId = request()->input('category_program_id');
+                                // $categoryName = CategoryProgram::findOrFail($categoryProgramId)->name;
+                                $randomString = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 10);
+                                $originalName = $file->getClientOriginalName();
+                                $extension = $file->getClientOriginalExtension();
+                                $fileName = "$randomString.$extension";
+                                return $fileName;
+                            })
+                            ->deleteUploadedFileUsing(function ($file) {
+                                Storage::delete($file);
+                            }),
                     ])
                     ->columns(2),
             ]);
@@ -95,6 +107,7 @@ class ProgramResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

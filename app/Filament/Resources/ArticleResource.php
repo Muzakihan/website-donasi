@@ -51,12 +51,10 @@ class ArticleResource extends Resource
                             ->fileAttachmentsDirectory('photos')
                             ->required(),
                         FileUpload::make('photos')
-                            ->directory('Article')
+                            ->directory('article')
                             ->image()
+                            ->openable()
                             ->imageEditor()
-                            ->deleteUploadedFileUsing(function ($file) {
-                                Storage::delete($file);
-                            }),
                     ])
                     ->columns(2),
             ]);
@@ -94,6 +92,7 @@ class ArticleResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

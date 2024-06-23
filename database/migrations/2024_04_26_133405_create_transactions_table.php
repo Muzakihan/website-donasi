@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->longText('description')->nullable();
             $table->integer('donate_price');
-            $table->softDeletes();
             $table->timestamps();
         });
     }
