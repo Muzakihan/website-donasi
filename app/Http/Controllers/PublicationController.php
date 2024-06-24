@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Article;
 
 class PublicationController extends Controller
 {
@@ -10,16 +11,24 @@ class PublicationController extends Controller
     {
         return view('pages.publication.event');
     }
+
     public function article()
     {
-        return view('pages.publication.article');
+        $articles = Article::with('categoryArticle')->get();
+        return view('pages.publication.article', compact('articles'));
     }
+
     public function laporanKeuangan()
     {
         return view('pages.publication.laporan-keuangan');
     }
-    public function singleArticle()
+
+    public function singleArticle($id)
     {
-        return view('pages.publication.artikel-single');
+        $singleArticle = Article::with('categoryArticle')->findOrFail($id);
+        $relatedArticles = Article::where('id', '!=', $id)->inRandomOrder()->limit(3)->get();
+        return view('pages.publication.artikel-single', compact('singleArticle', 'relatedArticles'));
     }
+    
 }
+    

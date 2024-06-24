@@ -26,18 +26,21 @@ Route::get('jemput-layanan', [ServiceController::class, 'jemputLayanan'])->name(
 Route::get('kantor-layanan', [ServiceController::class, 'kantorLayanan'])->name('kantor-layanan');
 
 Route::get('event', [PublicationController::class, 'event'])->name('event');
-Route::get('artikel', [PublicationController::class, 'article'])->name('artikel');
+Route::get('articles', [PublicationController::class, 'article'])->name('articles');
+Route::get('articles/{id}', [PublicationController::class, 'singleArticle'])->name('single-article');
 Route::get('laporan-keuangan', [PublicationController::class, 'laporanKeuangan'])->name('laporan-keuangan');
-Route::get('detail', [PublicationController::class, 'singleArticle'])->name('article-single');
 
 Route::get('causes', [CausesController::class, 'index'])->name('causes');
 
 Route::get('ayd-sehat', [ProgramController::class, 'aydSehat'])->name('ayd-sehat');
 Route::get('ayd-cerdas', [ProgramController::class, 'aydCerdas'])->name('ayd-cerdas');
-Route::get('ayd-mandiri', [ProgramController::class, 'aydMandiri'])->name('ayd-mandiri');
+Route::get('/programs', [ProgramController::class, 'index'])->name('programs.index');
+Route::get('/program/{id}', [ProgramController::class, 'show'])->name('program.show');
+Route::get('/program/{id}/photos', 'ProgramController@getPhotos')->name('program.photos');
 
-Route::get('donation', [DonateController::class, 'index'])->name('donate');
-Route::post('donation/store', [DonateController::class, 'store'])->name('donate.store');
+
+Route::get('/donate', [DonateController::class, 'index'])->name('donate.index');
+Route::post('/donate', [DonateController::class, 'store'])->name('donate.store');
 Route::get('/success', [DonateController::class, 'success'])->name('success');
 
 

@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Storage;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Donate extends Model implements HasMedia
 {
-    use HasFactory, InteractsWithMedia;
+    use HasFactory, SoftDeletes, InteractsWithMedia;
 
     protected $fillable = [
         'category_donate_id',
@@ -21,6 +20,7 @@ class Donate extends Model implements HasMedia
         'goal_price',
         'current_price',
         'photos',
+        'status'
     ];
 
     protected $hidden = [];
@@ -29,53 +29,8 @@ class Donate extends Model implements HasMedia
     {
         return $this->belongsTo(CategoryDonate::class, 'category_donate_id', 'id');
     }
-
-    protected static function boot()
+    public function transactions()
     {
-        parent::boot();
-
-        /** @var Model $model */
-        static::deleting(function ($model) {
-            if (!empty($model->photos) && Storage::disk('public')->exists($model->photos)) {
-                Storage::disk('public')->delete($model->photos);
-            }
-
-            if ($model->content) {
-                $dom = new \DOMDocument();
-                @$dom->loadHTML($model->content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-                $images = $dom->getElementsByTagName('img');
-                foreach ($images as $img) {
-                    $src = $img->getAttribute('src');
-                    // Mendapatkan path relatif dari URL
-                    $relativePath = str_replace(url('/') . '/storage/', '', $src);
-                    // Menghapus file dari storage
-                    if (Storage::disk('public')->exists($relativePath)) {
-                        Storage::disk('public')->delete($relativePath);
-                    }
-                }
-            }
-        });
-
-        static::updating(function ($model) {
-            if ($model->isDirty('photos') && ($model->getOriginal('photos') !== null)) {
-                Storage::disk('public')->delete($model->getOriginal('photos'));
-            }
-
-
-            if ($model->isDirty('content') && ($model->getOriginal('content') !== null)) {
-                $dom = new \DOMDocument();
-                @$dom->loadHTML($model->getOriginal('content'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-                $images = $dom->getElementsByTagName('img');
-                foreach ($images as $img) {
-                    $src = $img->getAttribute('src');
-                    // Mendapatkan path relatif dari URL
-                    $relativePath = str_replace(url('/') . '/storage/', '', $src);
-                    // Menghapus file dari storage
-                    if (Storage::disk('public')->exists($relativePath)) {
-                        Storage::disk('public')->delete($relativePath);
-                    }
-                }
-            }
-        });
+        return $this->hasMany(Transaction::class, 'donate_id');
     }
 }

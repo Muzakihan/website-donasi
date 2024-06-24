@@ -10,7 +10,7 @@
         <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="w-100" src="assets/img/carousel-1.jpg" alt="Image">
+                    <img class="w-100" src="assets/img/banner1.jpg" alt="Image">
                     <div class="carousel-caption">
                         <div class="container">
                             <div class="row justify-content-center">
@@ -31,7 +31,7 @@
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img class="w-100" src="assets/img/carousel-2.jpg" alt="Image">
+                    <img class="w-100" src="assets/img/banner3.jpg" alt="Image">
                     <div class="carousel-caption">
                         <div class="container">
                             <div class="row justify-content-center">
@@ -110,57 +110,8 @@
 
 
     <!-- Causes Start -->
-    <div class="container-xxl bg-light my-5 py-5">
-        <div class="container py-5">
-            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-                <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Feature Causes</div>
-                <h1 class="display-6 mb-5">Every Child Deserves The Opportunity To Learn</h1>
-            </div>
-            <div class="row g-4 justify-content-center">
-                {{-- @foreach ($products as $item)
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div
-                            class="causes-item d-flex flex-column bg-white border-top border-5 border-primary rounded-top overflow-hidden h-100">
-                            <div class="text-center p-4 pt-0">
-                                <div class="d-inline-block bg-primary text-white rounded-bottom fs-5 pb-1 px-3 mb-4">
-                                    <small>{{ $item->category->name }}</small>
-                                </div>
-                                <h5 class="mb-3">{{ $item->name }}</h5>
-                                <p>{!! $item->thumbnail_description !!}</p>
-                                <div class="causes-progress bg-light p-3 pt-2">
-                                    <div class="d-flex justify-content-between">
-                                        <p class="text-dark">{{ number_format($item->goal_price) }} <small
-                                                class="text-body">Goal</small></p>
-                                        <p class="text-dark">{{ number_format($item->current_price) }} <small
-                                                class="text-body">Raised</small></p>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar"
-                                            style="width: {{ ($item->current_price / $item->goal_price) * 100 }}%;"
-                                            aria-valuenow="{{ ($item->current_price / $item->goal_price) * 100 }}"
-                                            aria-valuemin="0" aria-valuemax="100">
-                                            <span>{{ round(($item->current_price / $item->goal_price) * 100) }}%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="position-relative mt-auto">
-                                <img class="img-fluid" src="{{ Storage::url($item->photos) }}" alt="">
-                                <div class="causes-overlay">
-                                    <a class="btn btn-outline-primary" href="">
-                                        Read More
-                                        <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
-                                            <i class="fa fa-arrow-right"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach --}}
-            </div>
-        </div>
-    </div>
+ 
+    
     <!-- Causes End -->
 
 
@@ -172,56 +123,46 @@
                 <h1 class="display-6 mb-5">Learn More What We Do And Get Involved</h1>
             </div>
             <div class="row g-4 justify-content-center">
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="service-item bg-white text-center h-100 p-4 p-xl-5">
-                        <img class="img-fluid mb-4" src="assets/img/icon-1.png" alt="">
-                        <h4 class="mb-3">Child Education</h4>
-                        <p class="mb-4">Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed vero
-                            dolor duo.</p>
-                        <a class="btn btn-outline-primary px-3" href="">
-                            Learn More
-                            <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
-                                <i class="fa fa-arrow-right"></i>
+                @foreach ($donates as $donate)
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="causes-item d-flex flex-column bg-white border-top border-5 border-primary rounded overflow-hidden h-100">
+                            <div class="position-relative mt-auto">
+                                <img class="img-fluid rounded" src="{{ Storage::url($donate->photos) }}" alt="">
+                                <div class="causes-overlay rounded-bottom">
+                                    <a class="btn btn-outline-primary" href="">
+                                        Read More
+                                        <div class="d-inline-flex btn-sm-square bg-primary text-white rounded ms-2">
+                                            <i class="fa fa-arrow-right"></i>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="service-item bg-white text-center h-100 p-4 p-xl-5">
-                        <img class="img-fluid mb-4" src="assets/img/icon-2.png" alt="">
-                        <h4 class="mb-3">Medical Treatment</h4>
-                        <p class="mb-4">Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed vero
-                            dolor duo.</p>
-                        <a class="btn btn-outline-primary px-3" href="">
-                            Learn More
-                            <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
-                                <i class="fa fa-arrow-right"></i>
+                            <div class="text-center p-4 pt-0">
+                                <div class="d-inline-block bg-primary text-white rounded fs-5 pb-1 px-3 mb-4 mt-2">
+                                    <small>{{ $donate->categoryDonate->name }}</small>
+                                </div>
+                                <h5 class="mb-3">{{ $donate->name }}</h5>
+                                <p>{!! $donate->thumbnail_description !!}</p>
+                                <div class="causes-progress bg-light p-3 pt-2 mb-3 ">
+                                    <div class="d-flex justify-content-between">
+                                        <p class="text-dark mb-0">{{ number_format($donate->goal_price) }} <small class="text-body">Goal</small></p>
+                                        <p class="text-dark mb-0">{{ number_format($donate->current_price) }} <small class="text-body">Terkumpul</small></p>
+                                    </div>
+                                </div>
                             </div>
-                        </a>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item bg-white text-center h-100 p-4 p-xl-5">
-                        <img class="img-fluid mb-4" src="assets/img/icon-3.png" alt="">
-                        <h4 class="mb-3">Pure Drinking Water</h4>
-                        <p class="mb-4">Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed vero
-                            dolor duo.</p>
-                        <a class="btn btn-outline-primary px-3" href="">
-                            Learn More
-                            <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
-                                <i class="fa fa-arrow-right"></i>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
+    
+    
     <!-- Service End -->
 
 
     <!-- Donate Start -->
-    <div class="container-fluid donate my-5 py-5" data-parallax="scroll" data-image-src="assets/img/carousel-2.jpg">
+    <div class="container-fluid donate my-5 py-5" data-parallax="scroll" data-image-src="assets/img/banner2.jpg">
         <div class="container py-5">
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
@@ -295,6 +236,58 @@
     </div>
     <!-- Donate End -->
 
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">What We Do</div>
+                <h1 class="display-6 mb-5">Learn More What We Do And Get Involved</h1>
+            </div>
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="service-item bg-white text-center h-100 p-4 p-xl-5">
+                        <img class="img-fluid mb-4" src="assets/img/icon-1.png" alt="">
+                        <h4 class="mb-3">Child Education</h4>
+                        <p class="mb-4">Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed vero
+                            dolor duo.</p>
+                        <a class="btn btn-outline-primary px-3" href="">
+                            Learn More
+                            <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                                <i class="fa fa-arrow-right"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="service-item bg-white text-center h-100 p-4 p-xl-5">
+                        <img class="img-fluid mb-4" src="assets/img/icon-2.png" alt="">
+                        <h4 class="mb-3">Medical Treatment</h4>
+                        <p class="mb-4">Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed vero
+                            dolor duo.</p>
+                        <a class="btn btn-outline-primary px-3" href="">
+                            Learn More
+                            <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                                <i class="fa fa-arrow-right"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="service-item bg-white text-center h-100 p-4 p-xl-5">
+                        <img class="img-fluid mb-4" src="assets/img/icon-3.png" alt="">
+                        <h4 class="mb-3">Pure Drinking Water</h4>
+                        <p class="mb-4">Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed vero
+                            dolor duo.</p>
+                        <a class="btn btn-outline-primary px-3" href="">
+                            Learn More
+                            <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                                <i class="fa fa-arrow-right"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Team Start -->
     <div class="container-xxl py-5">

@@ -53,7 +53,7 @@ class TransactionResource extends Resource
                             ->required(),
                         TextInput::make('donate_price')
                             ->mask(RawJs::make('$money($input)'))
-                            ->stripCharacters('.')
+                            ->stripCharacters(',')
                             ->numeric()
                             ->prefix('Rp ')
                             ->required(),

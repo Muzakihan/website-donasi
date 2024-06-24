@@ -4,16 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Transaction extends Model
 {
-    use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
         'donate_id',
         'username',
         'email',
-        'description',
         'description',
         'donate_price',
     ];
@@ -23,5 +23,17 @@ class Transaction extends Model
     public function donate()
     {
         return $this->belongsTo(Donate::class, 'donate_id', 'id');
+    }
+    
+    protected static function booted()
+    {
+        static::created(function ($transaction) {
+            $donate = $transaction->donate;
+            $donate->current_price += $transaction->donate_price;
+            if ($donate->current_price >= $donate->goal_price) {
+                $donate->status = 'success'; // Pastikan field 'status' ada di model Donate
+            }
+            $donate->save();
+        });
     }
 }

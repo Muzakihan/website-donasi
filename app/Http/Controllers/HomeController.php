@@ -2,22 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Product;
+use App\Models\Donate;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index() 
     {
-        // $categories = Category::get();
-        // $products = Product::with(['category'])->get();
+        $donates = Donate::with('categorydonate')->get();
 
-        // return view('pages.home', [
-        //     'categories' => $categories,
-        //     'products'    => $products
-        // ]);
-
-        return view('pages.home');
+        return view('pages.home', [
+            'donates' => $donates
+        ]);
     }
 }

@@ -2,37 +2,82 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\TransactionRequest;
-use App\Models\Product;
+use App\Http\Requests\DonateRequest;
+use App\Models\Donate;
 use App\Models\Transaction;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class DonateController extends Controller
 {
+    protected $donate;
+    protected $transaction;
+
+    public function __construct(Donate $donate, Transaction $transaction)
+    {
+        $this->donate = $donate;
+        $this->transaction = $transaction;
+    }
+
     public function index()
     {
-        $product = Product::all();
+        $donates = $this->donate->all();
+        return view('pages.donate', compact('donates'));
+    }
 
-        return view('pages.donate', [
-            'product' => $product
+    public function store(DonateRequest $request)
+    {
+        $donationAmount = $this->determineDonationAmount($request);
+
+        DB::transaction(function () use ($request, $donationAmount) {
+            $transaction = $this->createTransaction($request, $donationAmount);
+            $this->updateDonation($transaction);
+        });
+
+        return redirect()->route('success');
+    }
+
+    protected function determineDonationAmount(DonateRequest $request)
+    {
+        switch ($request->input('donate_option')) {
+            case 'option1':
+                return 10000;
+            case 'option2':
+                return 20000;
+            case 'option3':
+                return 30000;
+            default:
+                return $request->input('custom_amount');
+        }
+    }
+
+    protected function createTransaction(DonateRequest $request, $amount)
+    {
+        return $this->transaction->create([
+            'username' => $request->input('username'),
+            'email' => $request->input('email'),
+            'donate_id' => $request->input('products_id'),
+            'donate_price' => $amount,
+            'description' => 'Donation'
         ]);
     }
 
-    public function store(TransactionRequest $request)
+    protected function updateDonation(Transaction $transaction)
     {
-        $data = $request->all();
- 
-        $product = Product::findOrFail($data['products_id']);
-        if ($product->current_price !== null) {
-            $product->current_price += $data['donate_price'];
-        } else {
-            $product->current_price = $data['donate_price'];
+        $donate = $this->donate->find($transaction->donate_id);
+
+        Log::info('Current price before update: ' . $donate->current_price);
+        Log::info('Transaction price: ' . $transaction->donate_price);
+
+        $donate->current_price = $donate->transactions()->sum('donate_price');
+
+        Log::info('Current price after update: ' . $donate->current_price);
+
+        if ($donate->current_price > $donate->goal_price) {
+            $donate->current_price = $donate->goal_price;
         }
-            $product->save();
 
-        Transaction::create($data);
-
-        return redirect()->route('success');
+        $donate->save();
     }
 
     public function success()

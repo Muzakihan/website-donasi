@@ -54,7 +54,7 @@ class DonateResource extends Resource
                         RichEditor::make('description')->required(),
                         TextInput::make('goal_price')
                             ->mask(RawJs::make('$money($input)'))
-                            ->stripCharacters('.')
+                            ->stripCharacters(',')
                             ->prefix('Rp ')
                             ->numeric()
                             ->required(),

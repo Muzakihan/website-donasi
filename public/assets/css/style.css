@@ -78,6 +78,9 @@
     height: 45px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 }
+.container-fluid.fixed-top {
+    position: absolute !important;
+}
 
 .navbar .dropdown-toggle::after {
     border: none;
@@ -111,6 +114,17 @@
     .navbar .navbar-nav .nav-link {
         padding: 10px 0;
     }
+    .logo {
+        padding: 5px 5px 0 0;
+        width: 50px !important;
+        height: 50px !important;
+    }
+    .logo-teks{
+        font-size: 15px;
+    }
+    .container-fluid.fixed-top {
+        position: fixed !important;
+    }
 }
 
 @media (min-width: 992px) {
@@ -123,6 +137,7 @@
         transition: 0.5s;
         opacity: 0;
     }
+    
 
     .navbar .nav-item:hover .dropdown-menu {
         transform: rotateX(0deg);
@@ -131,7 +146,88 @@
         opacity: 1;
     }
 }
+.navbar{
+    background-color: #001d23;
+    margin: 10px;
+    border-radius: 10px;
+    position: static;
+}
+.navbar button{
+    color: white;
+}
+.navbar button span{
+    color: white;
+    padding-top: 5px;
+    font-size: 25px;
+}
+svg{
+    width: 15px !important;
+}
+.gallery figure {
+    margin-bottom: 0; /* Remove bottom margin from figures */
+}
 
+.gallery img {
+    max-width: 100%; /* Ensure images don't overflow their container */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination .page-item {
+    list-style: none;
+    margin: 0 5px;
+}
+
+.pagination .page-link {
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    color: #333;
+    text-decoration: none;
+    background-color: #fff;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.pagination .page-link:hover {
+    background-color: #f5f5f5;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+}
+
+.pagination .page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+    background-color: #fff;
+    border-color: #ddd;
+}
+.pagination nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.article-content img {
+    max-width: 100%; /* Atur lebar maksimum gambar agar sesuai dengan lebar konten */
+    height: auto; /* Biarkan tinggi gambar disesuaikan secara otomatis */
+    display: block; /* Pastikan gambar ditampilkan sebagai block element */
+    margin: 0 auto; /* Pusatkan gambar di dalam konten */
+}
+.custom-hr {
+    border-top: 1px solid #ccc; /* Border color and width */
+    margin-top: 0.5rem; /* Top margin */
+    margin-bottom: 0.5rem; /* Bottom margin */
+    width: 100%; /* Full width */
+}
 /*** Header ***/
 .carousel-caption {
     top: 0;
