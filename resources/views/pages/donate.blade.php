@@ -2,6 +2,37 @@
 
 @section('title', 'Donate | Donation')
 
+<script type="text/javascript">
+    // For example trigger on button clicked, or any time you need
+    var payButton = document.getElementById('pay-button');
+    payButton.addEventListener('click', function() {
+        // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token.
+        // Also, use the embedId that you defined in the div above, here.
+        window.snap.embed('YOUR_SNAP_TOKEN', {
+            embedId: 'snap-container',
+            onSuccess: function(result) {
+                /* You may add your own implementation here */
+                alert("payment success!");
+                console.log(result);
+            },
+            onPending: function(result) {
+                /* You may add your own implementation here */
+                alert("wating your payment!");
+                console.log(result);
+            },
+            onError: function(result) {
+                /* You may add your own implementation here */
+                alert("payment failed!");
+                console.log(result);
+            },
+            onClose: function() {
+                /* You may add your own implementation here */
+                alert('you closed the popup without finishing the payment');
+            }
+        });
+    });
+</script>
+
 @section('content')
     <!-- Page Header -->
     <div class="container-fluid page-header mb-5 wow fadeIn" data-wow-delay="0.1s">
@@ -32,7 +63,7 @@
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                     <div class="h-100 bg-secondary p-5">
                         <!-- Donation Form -->
-                        <form method="POST" action="{{ route('donate.store') }}">
+                        <form method="POST" action="{{ route('donate.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="row g-3">
                                 <!-- Username -->
@@ -46,16 +77,15 @@
                                 <!-- Email -->
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <input type="email" class="form-control bg-light border-0" name="email" id="email"
-                                            placeholder="Your Email" required>
+                                        <input type="email" class="form-control bg-light border-0" name="email"
+                                            id="email" placeholder="Your Email" required>
                                         <label for="email">Your Email</label>
                                     </div>
                                 </div>
                                 <!-- Campaign Selection -->
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <select id="products_id" name="products_id"
-                                            class="form-control bg-light border-0">
+                                        <select id="products_id" name="donate_id" class="form-control bg-light border-0">
                                             <option value="">Choose Campaign</option>
                                             @foreach ($donates as $item)
                                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -67,19 +97,19 @@
                                 <!-- Donation Options -->
                                 <div class="col-12">
                                     <div class="btn-group d-flex justify-content-around">
-                                        <input type="radio" class="btn-check" name="donate_option" id="donate_option1"
-                                            value="option1" onclick="toggleCustomAmount(false)">
+                                        <input type="radio" class="btn-check" name="donate_price" id="donate_option1"
+                                            value="10000" onclick="toggleCustomAmount(false)">
                                         <label class="btn btn-light py-3" for="donate_option1">Rp.10.000</label>
 
-                                        <input type="radio" class="btn-check" name="donate_option" id="donate_option2"
-                                            value="option2" onclick="toggleCustomAmount(false)">
+                                        <input type="radio" class="btn-check" name="donate_price" id="donate_option2"
+                                            value="20000" onclick="toggleCustomAmount(false)">
                                         <label class="btn btn-light py-3" for="donate_option2">Rp.20.000</label>
 
-                                        <input type="radio" class="btn-check" name="donate_option" id="donate_option3"
-                                            value="option3" onclick="toggleCustomAmount(false)">
+                                        <input type="radio" class="btn-check" name="donate_price" id="donate_option3"
+                                            value="30000" onclick="toggleCustomAmount(false)">
                                         <label class="btn btn-light py-3" for="donate_option3">Rp.30.000</label>
 
-                                        <input type="radio" class="btn-check" name="donate_option" id="donate_custom"
+                                        <input type="radio" class="btn-check" name="donate_price" id="donate_custom"
                                             value="custom" onclick="toggleCustomAmount(true)">
                                         <label class="btn btn-light py-3" for="donate_custom">Custom Amount</label>
                                     </div>
@@ -96,12 +126,10 @@
                                             disabled>
                                     </div>
                                 </div>
-                                <!-- Hidden Input for Selected Option -->
-                                <input type="hidden" name="donate_price" id="donate_price" value="0">
-                                <!-- Submit Button -->
                                 <div class="col-12 mt-3">
-                                    <button type="submit" class="btn btn-primary">Donate Now</button>
+                                    <button type="submit" class="btn btn-primary" id="pay-button">Donate Now</button>
                                 </div>
+
                             </div>
                         </form>
                         <!-- End Donation Form -->
@@ -121,10 +149,10 @@
             <div class="row g-4 justify-content-center">
                 @foreach ($donates as $donate)
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="causes-item d-flex flex-column bg-white border-top border-5 border-primary rounded overflow-hidden h-100">
+                        <div
+                            class="causes-item d-flex flex-column bg-white border-top border-5 border-primary rounded overflow-hidden h-100">
                             <div class="position-relative mt-auto">
-                                <img class="img-fluid rounded"
-                                    src="{{ Storage::url($donate->photos) }}" alt="">
+                                <img class="img-fluid rounded" src="{{ Storage::url($donate->photos) }}" alt="">
                                 <div class="causes-overlay rounded-bottom">
                                     <a class="btn btn-outline-primary" href="">
                                         Read More
@@ -143,9 +171,11 @@
                                 <div class="causes-progress bg-light p-3 pt-2 mb-3 ">
                                     <div class="d-flex justify-content-between">
                                         <p class="text-dark mb-0">{{ number_format($donate->goal_price) }}
-                                            <small class="text-body">Goal</small></p>
+                                            <small class="text-body">Goal</small>
+                                        </p>
                                         <p class="text-dark mb-0">{{ number_format($donate->current_price) }}
-                                            <small class="text-body">Raised</small></p>
+                                            <small class="text-body">Raised</small>
+                                        </p>
                                     </div>
                                 </div>
                             </div>

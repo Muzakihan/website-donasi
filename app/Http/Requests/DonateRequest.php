@@ -16,8 +16,8 @@ class DonateRequest extends FormRequest
         return [
             'username' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'products_id' => 'required|exists:donates,id',
-            'donate_option' => 'required|string',
+            'donate_id' => 'required|exists:donates,id',
+            'donate_price' => 'required|numeric|min:10000',
             'custom_amount' => 'nullable|numeric|min:10000'
         ];
     }

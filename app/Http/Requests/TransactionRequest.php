@@ -9,16 +9,22 @@ class TransactionRequest extends FormRequest
 {
     public function authorize()
     {
-        return true; // Adjust authorization logic if needed
+        return true;
     }
 
-    public function rules()
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     */
+    public function rules(): array
     {
         return [
             'username' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'products_id' => 'required|exists:products,id',
-            'donate_price' => 'required|numeric|min:10000',
+            'donate_id' => 'required',
+            // 'donate_price' => 'required|numeric|min:10000',
         ];
     }
 }

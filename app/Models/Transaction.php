@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Transaction extends Model
 {
-    use SoftDeletes;
+    use HasFactory;
 
     protected $fillable = [
         'donate_id',
@@ -16,6 +16,7 @@ class Transaction extends Model
         'email',
         'description',
         'donate_price',
+        'snap_token',
     ];
 
     protected $hidden = [];
@@ -24,14 +25,16 @@ class Transaction extends Model
     {
         return $this->belongsTo(Donate::class, 'donate_id', 'id');
     }
-    
+
     protected static function booted()
     {
         static::created(function ($transaction) {
             $donate = $transaction->donate;
             $donate->current_price += $transaction->donate_price;
             if ($donate->current_price >= $donate->goal_price) {
-                $donate->status = 'success'; // Pastikan field 'status' ada di model Donate
+                $donate->status = 'success';
+            } elseif ($donate->current_price <= $donate->goal_price) {
+                $donate->status = 'pending';
             }
             $donate->save();
         });

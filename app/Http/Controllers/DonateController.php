@@ -3,85 +3,97 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\DonateRequest;
+use App\Http\Requests\TransactionRequest;
 use App\Models\Donate;
 use App\Models\Transaction;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class DonateController extends Controller
 {
-    protected $donate;
-    protected $transaction;
-
-    public function __construct(Donate $donate, Transaction $transaction)
-    {
-        $this->donate = $donate;
-        $this->transaction = $transaction;
-    }
-
     public function index()
     {
-        $donates = $this->donate->all();
+        $donates = Donate::all();
+
         return view('pages.donate', compact('donates'));
     }
 
-    public function store(DonateRequest $request)
+    public function store(TransactionRequest $request)
     {
-        $donationAmount = $this->determineDonationAmount($request);
+        $data = $request->all();
 
-        DB::transaction(function () use ($request, $donationAmount) {
-            $transaction = $this->createTransaction($request, $donationAmount);
-            $this->updateDonation($transaction);
-        });
+        if ($request->donate_price === 'custom') {
+            $data['donate_price'] = preg_replace('/[^0-9]/', '', $request->custom_amount);
+        } else {
+            $data['donate_price'] = $request->donate_price;
+        }
 
-        return redirect()->route('success');
-    }
+        $donates = Donate::findOrFail($data['donate_id']);
 
-    protected function determineDonationAmount(DonateRequest $request)
-    {
-        switch ($request->input('donate_option')) {
-            case 'option1':
-                return 10000;
-            case 'option2':
-                return 20000;
-            case 'option3':
-                return 30000;
-            default:
-                return $request->input('custom_amount');
+        if ($donates->current_price !== null) {
+            $donates->current_price += $data['donate_price'];
+        } else {
+            $donates->current_price = $data['donate_price'];
+        }
+
+        \Midtrans\Config::$serverKey = config('midtrans.serverKey');
+        \Midtrans\Config::$isProduction = false;
+        \Midtrans\Config::$isSanitized = true;
+        \Midtrans\Config::$is3ds = true;
+
+        $params = array(
+            'transaction_details' => array(
+                'order_id' => rand(),
+                'gross_amount' => $data['donate_price'],
+            ),
+
+            'customer_details' => array(
+                'first_name' => $data['username'],
+                'email' => $data['email'],
+            ),
+
+            'callbacks' => array(
+                'finish' => route('callback'),
+            )
+        );
+
+        try {
+            $snapToken = \Midtrans\Snap::createTransaction($params);
+
+            session([
+                'transaction_data' => [
+                    'donate_id' => $data['donate_id'],
+                    'username' => $data['username'],
+                    'email' => $data['email'],
+                    'donate_price' => $data['donate_price'],
+                    'snap_token' => $snapToken->token
+                ]
+            ]);
+
+            return redirect()->away($snapToken->redirect_url);
+
+            return redirect()->route('donate.index', compact('snapToken'));
+        } catch (\Exception $e) {
+            return back()->withError('Terjadi kesalahan saat membuat transaksi pembayaran: ' . $e->getMessage());
         }
     }
 
-    protected function createTransaction(DonateRequest $request, $amount)
+    public function callback(Request $request)
     {
-        return $this->transaction->create([
-            'username' => $request->input('username'),
-            'email' => $request->input('email'),
-            'donate_id' => $request->input('products_id'),
-            'donate_price' => $amount,
-            'description' => 'Donation'
-        ]);
-    }
+        $transactionData = session('transaction_data');
+        try {
+            // Process the transaction data
+            Transaction::create($transactionData);
 
-    protected function updateDonation(Transaction $transaction)
-    {
-        $donate = $this->donate->find($transaction->donate_id);
+            // Clear the session data
+            session()->forget('transaction_data');
 
-        Log::info('Current price before update: ' . $donate->current_price);
-        Log::info('Transaction price: ' . $transaction->donate_price);
+            // return json_encode($request->all() + $transactionData);
 
-        $donate->current_price = $donate->transactions()->sum('donate_price');
-
-        Log::info('Current price after update: ' . $donate->current_price);
-
-        if ($donate->current_price > $donate->goal_price) {
-            $donate->current_price = $donate->goal_price;
+            return redirect()->route('success');
+        } catch (\Exception $e) {
+            return redirect()->route('home')->with('error', 'Terjadi kesalahan saat memproses transaksi: ' . $e->getMessage());
         }
-
-        $donate->save();
-    }
-
-    public function success()
-    {
-        return view('pages.success');
     }
 }

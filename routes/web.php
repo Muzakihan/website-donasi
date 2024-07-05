@@ -42,6 +42,7 @@ Route::get('/program/{id}/photos', 'ProgramController@getPhotos')->name('program
 Route::get('/donate', [DonateController::class, 'index'])->name('donate.index');
 Route::post('/donate', [DonateController::class, 'store'])->name('donate.store');
 Route::get('/success', [DonateController::class, 'success'])->name('success');
+Route::get('/callback', [DonateController::class, 'callback'])->name('callback');
 
 
 Route::get('team', [OurTeamController::class, 'index'])->name('team');

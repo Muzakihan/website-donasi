@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('goal_price');
             $table->integer('current_price')->nullable();
             $table->string('photos')->nullable();
-            $table->softDeletes();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

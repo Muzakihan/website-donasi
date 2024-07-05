@@ -10,7 +10,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Donate extends Model implements HasMedia
 {
-    use HasFactory, SoftDeletes, InteractsWithMedia;
+    use HasFactory, InteractsWithMedia;
 
     protected $fillable = [
         'category_donate_id',
@@ -29,8 +29,8 @@ class Donate extends Model implements HasMedia
     {
         return $this->belongsTo(CategoryDonate::class, 'category_donate_id', 'id');
     }
-    public function transactions()
-    {
-        return $this->hasMany(Transaction::class, 'donate_id');
-    }
+    // public function transactions()
+    // {
+    //     return $this->hasMany(Transaction::class, 'donate_id');
+    // }
 }
