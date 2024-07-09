@@ -63,7 +63,7 @@
     <!-- Related Articles Start -->
     <h1 class="text-center text-black animated slideInDown mb-4 mt-4">Berita Lainnya</h1>
     @if ($relatedArticles->isEmpty())
-        <p>Tidak ada artikel terkait.</p>
+        <p class="text-center text-black animated slideInDown mb-4 mt-4">Tidak ada berita</p>
     @else
         <div class="container">
             <div class="row g-4 justify-content-center">

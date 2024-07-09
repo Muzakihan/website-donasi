@@ -34,8 +34,8 @@
                             </p>
                         </div>
                         <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                            <div class="bg-white rounded"  style="width: 120px;">
-                                <img src="assets/img/header.jpg" src="Jempulayanan-image">
+                            <div class="p-2 bg-white rounded">
+                                <img src="assets/img/about-2.jpg" src="Jempulayanan-image" style="width: 100%">
                             </div>
                         </div>
                     </div>
