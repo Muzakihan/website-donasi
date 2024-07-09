@@ -20,7 +20,7 @@
     <!-- Team Start -->
     <div class="container-xxl py-5">
         <div class="container">
-            <div class="container-fluid donate my-5 py-5" data-parallax="scroll" data-image-src="assets/img/carousel-2.jpg">
+            <div class="container-fluid donate my-5 py-5" data-parallax="scroll" data-image-src="assets/img/header.jpg">
                 <div class="container py-5">
                     <div class="row g-5 align-items-center">
                         <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
@@ -34,8 +34,8 @@
                             </p>
                         </div>
                         <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                            <div class="h-100 bg-white p-5 rounded">
-                                <img src="" alt="">
+                            <div class="bg-white rounded"  style="width: 120px;">
+                                <img src="assets/img/header.jpg" src="Jempulayanan-image">
                             </div>
                         </div>
                     </div>

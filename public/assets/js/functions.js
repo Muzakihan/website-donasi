@@ -1,3 +1,4 @@
+// Function to toggle the custom amount input field
 function toggleCustomAmount(enable) {
     const customAmountInput = document.getElementById("custom_amount");
     customAmountInput.disabled = !enable;
@@ -6,6 +7,7 @@ function toggleCustomAmount(enable) {
     }
 }
 
+// Function to format the input value as currency
 function formatCurrency(input) {
     // Remove non-numeric characters
     let value = input.value.replace(/\D/g, "");
@@ -26,3 +28,26 @@ function formatCurrency(input) {
         input.value = "";
     }
 }
+
+// Function to initialize the accordion functionality
+function initializeAccordion() {
+    var acc = document.getElementsByClassName("accordion");
+
+    for (var i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function () {
+            // Toggle between adding and removing the "active" class
+            this.classList.toggle("active");
+
+            // Toggle between hiding and showing the active panel
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+            } else {
+                panel.style.display = "block";
+            }
+        });
+    }
+}
+
+// Ensure the DOM is fully loaded before initializing the accordion
+document.addEventListener("DOMContentLoaded", initializeAccordion);

@@ -73,8 +73,6 @@
                     <div class="position-relative overflow-hidden h-100" style="min-height: 400px;">
                         <img class="position-absolute w-100 h-100 pt-5 pe-5" src="assets/img/about-1.jpg" alt=""
                             style="object-fit: cover;">
-                        <img class="position-absolute top-0 end-0 bg-white ps-2 pb-2" src="assets/img/about-2.jpg"
-                            alt="" style="width: 200px; height: 200px;">
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
@@ -86,17 +84,22 @@
                                 sit clita duo justo erat amet</p>
                             <span class="text-primary">Jhon Doe, Founder</span>
                         </div>
-                        <p class="mb-5">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam
-                            et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat
-                            amet</p>
-                        <a class="btn btn-primary py-2 px-3 me-3" href="">
-                            Learn More
+                        <p class="mb-5">
+                            <span class="text-primary"> Yayasan Anshor Yatim Dhuafa ( AYD ) </span> adalah sebuah organisasi
+                            nirlaba yang bergerak di bidang
+                            pendidikan dan sosial. Yayasan ini didirikan pada tanggal 21 September 2023. <br> Sejak
+                            disahkannya
+                            Akta Yayasan Anshor Yatim & Dhuafa dengan SK.KEMENKUMHAM.NO.AHU-0015718.AH.01.04.Tahun 2023 di
+                            Gunung Sindur, Bogor, Jawa Barat.
+                        </p>
+                        <a class="btn btn-primary py-2 px-3 me-3" href="{{ route('profil') }}">
+                            Lihat Detail
                             <div class="d-inline-flex btn-sm-square bg-white text-primary rounded-circle ms-2">
                                 <i class="fa fa-arrow-right"></i>
                             </div>
                         </a>
-                        <a class="btn btn-outline-primary py-2 px-3" href="">
-                            Contact Us
+                        <a class="btn btn-outline-primary py-2 px-3" href="{{ route('struktur') }}">
+                            Struktur Organisasi
                             <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
                                 <i class="fa fa-arrow-right"></i>
                             </div>

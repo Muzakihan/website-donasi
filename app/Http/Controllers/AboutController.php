@@ -19,4 +19,3 @@ class AboutController extends Controller
         return view('pages.about.legal-formal');
     }
 }
-Event::createClassListener(listener);
