@@ -113,8 +113,8 @@
 
 
     <!-- Causes Start -->
- 
-    
+
+
     <!-- Causes End -->
 
 
@@ -128,7 +128,8 @@
             <div class="row g-4 justify-content-center">
                 @foreach ($donates as $donate)
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="causes-item d-flex flex-column bg-white border-top border-5 border-primary rounded overflow-hidden h-100">
+                        <div
+                            class="causes-item d-flex flex-column bg-white border-top border-5 border-primary rounded overflow-hidden h-100">
                             <div class="position-relative mt-auto">
                                 <img class="img-fluid rounded" src="{{ Storage::url($donate->photos) }}" alt="">
                                 <div class="causes-overlay rounded-bottom">
@@ -148,8 +149,10 @@
                                 <p>{!! $donate->thumbnail_description !!}</p>
                                 <div class="causes-progress bg-light p-3 pt-2 mb-3 ">
                                     <div class="d-flex justify-content-between">
-                                        <p class="text-dark mb-0">{{ number_format($donate->goal_price) }} <small class="text-body">Goal</small></p>
-                                        <p class="text-dark mb-0">{{ number_format($donate->current_price) }} <small class="text-body">Terkumpul</small></p>
+                                        <p class="text-dark mb-0">{{ number_format($donate->goal_price) }} <small
+                                                class="text-body">Goal</small></p>
+                                        <p class="text-dark mb-0">{{ number_format($donate->current_price) }} <small
+                                                class="text-body">Terkumpul</small></p>
                                     </div>
                                 </div>
                             </div>
@@ -159,8 +162,8 @@
             </div>
         </div>
     </div>
-    
-    
+
+
     <!-- Service End -->
 
 
@@ -201,9 +204,9 @@
                                             class="form-control bg-light border-0"
                                             style="padding-top: 0 !important; padding-bottom: 0 !important">
                                             <option value="">Choose Campaign</option>
-                                            {{-- @foreach ($products as $item)
+                                            @foreach ($donates as $item)
                                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                            @endforeach --}}
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>

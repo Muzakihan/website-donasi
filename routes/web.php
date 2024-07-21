@@ -36,7 +36,7 @@ Route::get('ayd-sehat', [ProgramController::class, 'aydSehat'])->name('ayd-sehat
 Route::get('ayd-cerdas', [ProgramController::class, 'aydCerdas'])->name('ayd-cerdas');
 Route::get('/programs', [ProgramController::class, 'index'])->name('programs.index');
 Route::get('/program/{id}', [ProgramController::class, 'show'])->name('program.show');
-Route::get('/program/{id}/photos', 'ProgramController@getPhotos')->name('program.photos');
+Route::get('/program/{id}/photos', [ProgramController::class, 'getPhotos'])->name('program.photos');
 
 
 Route::get('/donate', [DonateController::class, 'index'])->name('donate.index');

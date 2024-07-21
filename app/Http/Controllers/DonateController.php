@@ -72,8 +72,6 @@ class DonateController extends Controller
             ]);
 
             return redirect()->away($snapToken->redirect_url);
-
-            return redirect()->route('donate.index', compact('snapToken'));
         } catch (\Exception $e) {
             return back()->withError('Terjadi kesalahan saat membuat transaksi pembayaran: ' . $e->getMessage());
         }
@@ -86,7 +84,6 @@ class DonateController extends Controller
             // Process the transaction data
             Transaction::create($transactionData);
 
-            // Clear the session data
             session()->forget('transaction_data');
 
             // return json_encode($request->all() + $transactionData);
@@ -95,5 +92,10 @@ class DonateController extends Controller
         } catch (\Exception $e) {
             return redirect()->route('home')->with('error', 'Terjadi kesalahan saat memproses transaksi: ' . $e->getMessage());
         }
+    }
+
+    public function success()
+    {
+        return view('pages.success');
     }
 }

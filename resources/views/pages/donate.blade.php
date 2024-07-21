@@ -2,37 +2,6 @@
 
 @section('title', 'Donate | Donation')
 
-<script type="text/javascript">
-    // For example trigger on button clicked, or any time you need
-    var payButton = document.getElementById('pay-button');
-    payButton.addEventListener('click', function() {
-        // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token.
-        // Also, use the embedId that you defined in the div above, here.
-        window.snap.embed('YOUR_SNAP_TOKEN', {
-            embedId: 'snap-container',
-            onSuccess: function(result) {
-                /* You may add your own implementation here */
-                alert("payment success!");
-                console.log(result);
-            },
-            onPending: function(result) {
-                /* You may add your own implementation here */
-                alert("wating your payment!");
-                console.log(result);
-            },
-            onError: function(result) {
-                /* You may add your own implementation here */
-                alert("payment failed!");
-                console.log(result);
-            },
-            onClose: function() {
-                /* You may add your own implementation here */
-                alert('you closed the popup without finishing the payment');
-            }
-        });
-    });
-</script>
-
 @section('content')
     <!-- Page Header -->
     <div class="container-fluid page-header mb-5 wow fadeIn" data-wow-delay="0.1s">
@@ -82,6 +51,14 @@
                                         <label for="email">Your Email</label>
                                     </div>
                                 </div>
+                                <!-- Phone Number -->
+                               <div class="col-12">
+                                    <div class="form-floating">
+                                        <input type="email" class="form-control bg-light border-0" name="email"
+                                            id="email" placeholder="Your Phone Number">
+                                        <label for="email">Your Phone Number</label>
+                                    </div>
+                                </div>
                                 <!-- Campaign Selection -->
                                 <div class="col-12">
                                     <div class="form-floating">
@@ -92,6 +69,22 @@
                                             @endforeach
                                         </select>
                                         <label for="products_id">Choose Campaign</label>
+                                    </div>
+                                </div>
+                                <!-- Hope For The Foundation -->
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <input type="email" class="form-control bg-light border-0" name="email"
+                                            id="email" placeholder="">
+                                        <label for="email">Hope For The Foundation</label>
+                                    </div>
+                                </div>
+                                <!-- Hope For You -->
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <input type="email" class="form-control bg-light border-0" name="email"
+                                            id="email" placeholder="Your Phone Number">
+                                        <label for="email">Hope For You</label>
                                     </div>
                                 </div>
                                 <!-- Donation Options -->
