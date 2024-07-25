@@ -8,23 +8,35 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Transaction extends Model
 {
-    // use HasFactory;
-
-    use SoftDeletes;
+    use HasFactory;
 
     protected $fillable = [
-        'products_id', 
-        'username', 
+        'donate_id',
+        'username',
         'email',
-        'description', 
-        'description', 
-        'donate_price', 
+        'description',
+        'donate_price',
+        'snap_token',
     ];
 
     protected $hidden = [];
 
-    public function product()
+    public function donate()
     {
-        return $this->belongsTo(Product::class, 'products_id', 'id');
+        return $this->belongsTo(Donate::class, 'donate_id', 'id');
+    }
+
+    protected static function booted()
+    {
+        static::created(function ($transaction) {
+            $donate = $transaction->donate;
+            $donate->current_price += $transaction->donate_price;
+            if ($donate->current_price >= $donate->goal_price) {
+                $donate->status = 'success';
+            } elseif ($donate->current_price <= $donate->goal_price) {
+                $donate->status = 'pending';
+            }
+            $donate->save();
+        });
     }
 }

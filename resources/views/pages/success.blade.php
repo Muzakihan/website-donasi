@@ -7,10 +7,13 @@
     <title>Thanks | Pointsebelas</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <style>
         @import url(//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css);
         @import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
+
         * {
             font-family: "Poppins", sans-serif;
         }
@@ -32,21 +35,20 @@
         .btn-go-shopping:hover {
             background-color: #ffb524;
         }
-
     </style>
     <link rel="stylesheet" href="https://2-22-4-dot-lead-pages.appspot.com/static/lp918/min/default_thank_you.css">
     <script src="https://2-22-4-dot-lead-pages.appspot.com/static/lp918/min/jquery-1.9.1.min.js"></script>
     <script src="https://2-22-4-dot-lead-pages.appspot.com/static/lp918/min/html5shiv.js"></script>
     <script>
         var countdown = 10;
-        var countdownInterval = setInterval(function () {
+        var countdownInterval = setInterval(function() {
             countdown--;
 
             document.getElementById('countdown').innerText = countdown;
 
             if (countdown <= 0) {
                 clearInterval(countdownInterval);
-                window.location.href = "{{ route('home') }}";
+                window.location.href = "{{ route('donate.index') }}";
             }
         }, 1000);
     </script>
@@ -61,11 +63,12 @@
         <h1 class="site-header__title" data-lead-id="site-header-title">TERIMA KASIH!</h1>
         <p class="main-content__body" data-lead-id="main-content-body">Sudah Mendonasi, Semoga Kamu Sehat Selalu...</p>
         <br>
-        <a href="{{route('donate')}}" class="btn-go-shopping ">Go To Donate</a>
+        <a href="{{ route('donate.index') }}" class="btn-go-shopping ">Go To Donate</a>
     </div>
 
     <footer class="site-footer" id="footer">
-        <p class="site-footer__fineprint" data-lead-id="main-content-body">Redirecting in <span id="countdown">5</span> seconds...</p>
+        <p class="site-footer__fineprint" data-lead-id="main-content-body">Redirecting in <span id="countdown">5</span>
+            seconds...</p>
     </footer>
 </body>
 

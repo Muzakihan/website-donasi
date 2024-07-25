@@ -13,13 +13,12 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('products_id');
+            $table->unsignedBigInteger('donate_id');
             $table->string('username');
             $table->string('email')->nullable();
             $table->longText('description')->nullable();
             $table->integer('donate_price');
-
-            $table->softDeletes();
+            $table->string('snap_token')->nullable();
             $table->timestamps();
         });
     }

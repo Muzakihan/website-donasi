@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\TransactionResource\Pages;
 use App\Filament\Resources\TransactionResource\RelationManagers;
+use App\Models\Donate;
 use App\Models\Product;
 use App\Models\Transaction;
 use Filament\Forms;
@@ -13,6 +14,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Support\RawJs;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -24,6 +26,8 @@ class TransactionResource extends Resource
     protected static ?string $model = Transaction::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-currency-dollar';
+
+    protected static ?string $navigationGroup = 'Donate';
 
     public static function form(Form $form): Form
     {
@@ -37,13 +41,22 @@ class TransactionResource extends Resource
                 ])
                     ->schema([
                         TextInput::make('username')->label('username')->required(),
-                        TextInput::make('email')->required(),
-                        Select::make('products_id')
-                            ->label('Product')
-                            ->options(Product::all()->pluck('name', 'id'))
+                        TextInput::make('email')
+                            ->email()
                             ->required(),
-                        RichEditor::make('description')->required(),
-                        TextInput::make('donate_price')->required()
+                        Select::make('donate_id')
+                            ->label('Donate')
+                            ->options(Donate::all()->pluck('name', 'id'))
+                            ->required(),
+                        RichEditor::make('description')
+                            ->disableToolbarButtons(['attachFiles'])
+                            ->required(),
+                        TextInput::make('donate_price')
+                            ->mask(RawJs::make('$money($input)'))
+                            ->stripCharacters(',')
+                            ->numeric()
+                            ->prefix('Rp ')
+                            ->required(),
                     ])
             ]);
     }
@@ -54,9 +67,17 @@ class TransactionResource extends Resource
             ->columns([
                 TextColumn::make('username')->sortable()->searchable(),
                 TextColumn::make('email')->sortable()->searchable(),
-                TextColumn::make('product.name')->sortable()->searchable(),
-                TextColumn::make('donate_price')->sortable()->searchable()->money('IDR'),
-
+                TextColumn::make('donate.name')->sortable()->searchable(),
+                TextColumn::make('donate_price')
+                    ->sortable()
+                    ->searchable()
+                    ->getStateUsing(function ($record) {
+                        if ($record->donate_price !== NULL) {
+                            return 'Rp ' . number_format($record->donate_price, 0, ',', '.');
+                        } else {
+                            return false;
+                        }
+                    }),
             ])
             ->filters([
                 //

@@ -10,7 +10,7 @@
         <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="w-100" src="assets/img/carousel-1.jpg" alt="Image">
+                    <img class="w-100" src="assets/img/banner1.jpg" alt="Image">
                     <div class="carousel-caption">
                         <div class="container">
                             <div class="row justify-content-center">
@@ -31,7 +31,7 @@
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img class="w-100" src="assets/img/carousel-2.jpg" alt="Image">
+                    <img class="w-100" src="assets/img/banner3.jpg" alt="Image">
                     <div class="carousel-caption">
                         <div class="container">
                             <div class="row justify-content-center">
@@ -73,8 +73,6 @@
                     <div class="position-relative overflow-hidden h-100" style="min-height: 400px;">
                         <img class="position-absolute w-100 h-100 pt-5 pe-5" src="assets/img/about-1.jpg" alt=""
                             style="object-fit: cover;">
-                        <img class="position-absolute top-0 end-0 bg-white ps-2 pb-2" src="assets/img/about-2.jpg"
-                            alt="" style="width: 200px; height: 200px;">
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
@@ -86,17 +84,22 @@
                                 sit clita duo justo erat amet</p>
                             <span class="text-primary">Jhon Doe, Founder</span>
                         </div>
-                        <p class="mb-5">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam
-                            et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat
-                            amet</p>
-                        <a class="btn btn-primary py-2 px-3 me-3" href="">
-                            Learn More
+                        <p class="mb-5">
+                            <span class="text-primary"> Yayasan Anshor Yatim Dhuafa ( AYD ) </span> adalah sebuah organisasi
+                            nirlaba yang bergerak di bidang
+                            pendidikan dan sosial. Yayasan ini didirikan pada tanggal 21 September 2023. <br> Sejak
+                            disahkannya
+                            Akta Yayasan Anshor Yatim & Dhuafa dengan SK.KEMENKUMHAM.NO.AHU-0015718.AH.01.04.Tahun 2023 di
+                            Gunung Sindur, Bogor, Jawa Barat.
+                        </p>
+                        <a class="btn btn-primary py-2 px-3 me-3" href="{{ route('profil') }}">
+                            Lihat Detail
                             <div class="d-inline-flex btn-sm-square bg-white text-primary rounded-circle ms-2">
                                 <i class="fa fa-arrow-right"></i>
                             </div>
                         </a>
-                        <a class="btn btn-outline-primary py-2 px-3" href="">
-                            Contact Us
+                        <a class="btn btn-outline-primary py-2 px-3" href="{{ route('struktur') }}">
+                            Struktur Organisasi
                             <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
                                 <i class="fa fa-arrow-right"></i>
                             </div>
@@ -110,49 +113,47 @@
 
 
     <!-- Causes Start -->
-    <div class="container-xxl bg-light my-5 py-5">
-        <div class="container py-5">
+
+
+    <!-- Causes End -->
+
+
+    <!-- Service Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-                <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Feature Causes</div>
-                <h1 class="display-6 mb-5">Every Child Deserves The Opportunity To Learn</h1>
+                <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">What We Do</div>
+                <h1 class="display-6 mb-5">Learn More What We Do And Get Involved</h1>
             </div>
             <div class="row g-4 justify-content-center">
-                @foreach ($products as $item)
+                @foreach ($donates as $donate)
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div
-                            class="causes-item d-flex flex-column bg-white border-top border-5 border-primary rounded-top overflow-hidden h-100">
-                            <div class="text-center p-4 pt-0">
-                                <div class="d-inline-block bg-primary text-white rounded-bottom fs-5 pb-1 px-3 mb-4">
-                                    <small>{{ $item->category->name }}</small>
-                                </div>
-                                <h5 class="mb-3">{{ $item->name }}</h5>
-                                <p>{!! $item->thumbnail_description !!}</p>
-                                <div class="causes-progress bg-light p-3 pt-2">
-                                    <div class="d-flex justify-content-between">
-                                        <p class="text-dark">{{ number_format($item->goal_price) }} <small
-                                                class="text-body">Goal</small></p>
-                                        <p class="text-dark">{{ number_format($item->current_price) }} <small
-                                                class="text-body">Raised</small></p>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar"
-                                            style="width: {{ ($item->current_price / $item->goal_price) * 100 }}%;"
-                                            aria-valuenow="{{ ($item->current_price / $item->goal_price) * 100 }}"
-                                            aria-valuemin="0" aria-valuemax="100">
-                                            <span>{{ round(($item->current_price / $item->goal_price) * 100) }}%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            class="causes-item d-flex flex-column bg-white border-top border-5 border-primary rounded overflow-hidden h-100">
                             <div class="position-relative mt-auto">
-                                <img class="img-fluid" src="{{ Storage::url($item->photos) }}" alt="">
-                                <div class="causes-overlay">
+                                <img class="img-fluid rounded" src="{{ Storage::url($donate->photos) }}" alt="">
+                                <div class="causes-overlay rounded-bottom">
                                     <a class="btn btn-outline-primary" href="">
                                         Read More
-                                        <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                                        <div class="d-inline-flex btn-sm-square bg-primary text-white rounded ms-2">
                                             <i class="fa fa-arrow-right"></i>
                                         </div>
                                     </a>
+                                </div>
+                            </div>
+                            <div class="text-center p-4 pt-0">
+                                <div class="d-inline-block bg-primary text-white rounded fs-5 pb-1 px-3 mb-4 mt-2">
+                                    <small>{{ $donate->categoryDonate->name }}</small>
+                                </div>
+                                <h5 class="mb-3">{{ $donate->name }}</h5>
+                                <p>{!! $donate->thumbnail_description !!}</p>
+                                <div class="causes-progress bg-light p-3 pt-2 mb-3 ">
+                                    <div class="d-flex justify-content-between">
+                                        <p class="text-dark mb-0">{{ number_format($donate->goal_price) }} <small
+                                                class="text-body">Goal</small></p>
+                                        <p class="text-dark mb-0">{{ number_format($donate->current_price) }} <small
+                                                class="text-body">Terkumpul</small></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -161,10 +162,86 @@
             </div>
         </div>
     </div>
-    <!-- Causes End -->
 
 
-    <!-- Service Start -->
+    <!-- Service End -->
+
+
+    <!-- Donate Start -->
+    <div class="container-fluid donate my-5 py-5" data-parallax="scroll" data-image-src="assets/img/banner2.jpg">
+        <div class="container py-5">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                    <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Donate Now</div>
+                    <h1 class="display-6 text-white mb-5">Thanks For The Results Achieved With You</h1>
+                    <p class="text-white-50 mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam
+                        amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore
+                        erat amet</p>
+                </div>
+                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                    <div class="h-100 bg-white p-5">
+                        <form method="post" action="{{ route('donate.store') }}" enctype="multipart/form-data">
+                            @csrf
+
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control bg-light border-0" id="username"
+                                            placeholder="Your Name" name="username">
+                                        <label for="name">Your Name</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <input type="email" class="form-control bg-light border-0" id="email"
+                                            placeholder="Your Email" name="email">
+                                        <label for="email">Your Email</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <select id="products_id" name="products_id"
+                                            class="form-control bg-light border-0"
+                                            style="padding-top: 0 !important; padding-bottom: 0 !important">
+                                            <option value="">Choose Campaign</option>
+                                            @foreach ($donates as $item)
+                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="btn-group d-flex justify-content-around">
+                                        <input type="radio" class="btn-check" name="donate_price" id="donate_price1"
+                                            value="10000" checked>
+                                        <label class="btn btn-light py-3" for="donate_price1">Rp.10.000</label>
+
+                                        <input type="radio" class="btn-check" name="donate_price" id="donate_price2"
+                                            value="20000">
+                                        <label class="btn btn-light py-3" for="donate_price2">Rp.20.000</label>
+
+                                        <input type="radio" class="btn-check" name="donate_price" id="donate_price3"
+                                            value="30000">
+                                        <label class="btn btn-light py-3" for="donate_price3">Rp.30.000</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-primary px-5" style="height: 60px;">
+                                        Donate Now
+                                        <div class="d-inline-flex btn-sm-square bg-white text-primary rounded-circle ms-2">
+                                            <i class="fa fa-arrow-right"></i>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Donate End -->
+
     <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
@@ -217,84 +294,6 @@
             </div>
         </div>
     </div>
-    <!-- Service End -->
-
-
-    <!-- Donate Start -->
-    <div class="container-fluid donate my-5 py-5" data-parallax="scroll" data-image-src="assets/img/carousel-2.jpg">
-        <div class="container py-5">
-            <div class="row g-5 align-items-center">
-                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                    <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Donate Now</div>
-                    <h1 class="display-6 text-white mb-5">Thanks For The Results Achieved With You</h1>
-                    <p class="text-white-50 mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam
-                        amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore
-                        erat amet</p>
-                </div>
-                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                    <div class="h-100 bg-white p-5">
-                        <form method="post" action="{{ route('donate.store') }}" enctype="multipart/form-data">
-                            @csrf
-
-                            <div class="row g-3">
-                                <div class="col-12">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control bg-light border-0" id="username"
-                                            placeholder="Your Name" name="username">
-                                        <label for="name">Your Name</label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-floating">
-                                        <input type="email" class="form-control bg-light border-0" id="email"
-                                            placeholder="Your Email" name="email">
-                                        <label for="email">Your Email</label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-floating">
-                                        <select id="products_id" name="products_id"
-                                            class="form-control bg-light border-0"
-                                            style="padding-top: 0 !important; padding-bottom: 0 !important">
-                                            <option value="">Choose Campaign</option>
-                                            @foreach ($products as $item)
-                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="btn-group d-flex justify-content-around">
-                                        <input type="radio" class="btn-check" name="donate_price" id="donate_price1"
-                                            value="10000" checked>
-                                        <label class="btn btn-light py-3" for="donate_price1">Rp.10.000</label>
-
-                                        <input type="radio" class="btn-check" name="donate_price" id="donate_price2"
-                                            value="20000">
-                                        <label class="btn btn-light py-3" for="donate_price2">Rp.20.000</label>
-
-                                        <input type="radio" class="btn-check" name="donate_price" id="donate_price3"
-                                            value="30000">
-                                        <label class="btn btn-light py-3" for="donate_price3">Rp.30.000</label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <button class="btn btn-primary px-5" style="height: 60px;">
-                                        Donate Now
-                                        <div class="d-inline-flex btn-sm-square bg-white text-primary rounded-circle ms-2">
-                                            <i class="fa fa-arrow-right"></i>
-                                        </div>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Donate End -->
-
 
     <!-- Team Start -->
     <div class="container-xxl py-5">
