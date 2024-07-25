@@ -182,7 +182,7 @@
     background-size: cover;
 }
 
-.page-header .breadcrumb-item + .breadcrumb-item::before {
+.page-header .breadcrumb-item+.breadcrumb-item::before {
     color: #999999;
 }
 
@@ -246,7 +246,7 @@
 }
 
 .btn-group .btn-light:hover,
-.btn-group input[type="radio"]:checked + label {
+.btn-group input[type="radio"]:checked+label {
     color: var(--primary);
     border-color: var(--primary);
 }
@@ -302,11 +302,9 @@
     left: 0;
     height: 100%;
     width: 0;
-    background: linear-gradient(
-        to right,
-        rgba(255, 255, 255, 1) 0%,
-        rgba(255, 255, 255, 0) 100%
-    );
+    background: linear-gradient(to right,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(255, 255, 255, 0) 100%);
     z-index: 1;
 }
 
@@ -317,15 +315,14 @@
     right: 0;
     height: 100%;
     width: 0;
-    background: linear-gradient(
-        to left,
-        rgba(255, 255, 255, 1) 0%,
-        rgba(255, 255, 255, 0) 100%
-    );
+    background: linear-gradient(to left,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(255, 255, 255, 0) 100%);
     z-index: 1;
 }
 
 @media (min-width: 768px) {
+
     .testimonial-carousel::before,
     .testimonial-carousel::after {
         width: 200px;
@@ -333,6 +330,7 @@
 }
 
 @media (min-width: 992px) {
+
     .testimonial-carousel::before,
     .testimonial-carousel::after {
         width: 300px;
@@ -397,12 +395,16 @@
 /*** Footer ***/
 .card-section-structure .card {
     display: flex;
-    flex-direction: row-reverse; /* Reverse the direction to make image on the right */
+    flex-direction: row-reverse;
+    /* Reverse the direction to make image on the right */
 }
+
 .card-section-structure .card .card-img {
-    width: 100%; /* Adjust the width of the image as needed */
+    width: 100%;
+    /* Adjust the width of the image as needed */
     max-height: max-content;
 }
+
 .card-section-structure .card .card-body {
     width: 300px;
     display: flex;
@@ -410,9 +412,11 @@
     height: 100%;
     justify-content: space-between;
 }
+
 .card-section-structure .card .card-body .btn {
     width: 250px;
 }
+
 .footer .btn.btn-link {
     display: block;
     margin-bottom: 5px;
@@ -464,7 +468,6 @@
 }
 
 .logo {
-    padding: 5px 5px 0 0;
     width: 100px;
     height: 100px;
 }
