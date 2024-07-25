@@ -9,8 +9,6 @@ use App\Http\Controllers\OurTeamController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\PublicationController;
-use App\Jobs\SendEmailJob;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -50,13 +48,3 @@ Route::get('/callback', [DonateController::class, 'callback'])->name('callback')
 Route::get('team', [OurTeamController::class, 'index'])->name('team');
 Route::get('contact', [ContacController::class, 'index'])->name('contact');
 Route::get('service', [ServiceController::class, 'index'])->name('service');
-
-
-Route::post('send-email', function (Request $request) {
-
-    $data['email'] = 'raihandzikra20@gmail.com';
-
-    dispatch(new SendEmailJob($data));
-
-    return 'success';
-});

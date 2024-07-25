@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DonateRequest;
 use App\Http\Requests\TransactionRequest;
+use App\Jobs\SendEmailJob;
+use App\Mail\SendEmail;
 use App\Models\Donate;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class DonateController extends Controller
 {
@@ -81,15 +84,15 @@ class DonateController extends Controller
     {
         $transactionData = session('transaction_data');
         try {
-            // Process the transaction data
             Transaction::create($transactionData);
+
+            SendEmailJob::dispatch($transactionData);
 
             session()->forget('transaction_data');
 
-            // return json_encode($request->all() + $transactionData);
-
             return redirect()->route('success');
         } catch (\Exception $e) {
+            Log::error($e->getMessage());
             return redirect()->route('home')->with('error', 'Terjadi kesalahan saat memproses transaksi: ' . $e->getMessage());
         }
     }

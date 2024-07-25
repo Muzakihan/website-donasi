@@ -52,13 +52,13 @@
                                     </div>
                                 </div>
                                 <!-- Phone Number -->
-                               <div class="col-12">
+                                {{-- <div class="col-12">
                                     <div class="form-floating">
                                         <input type="email" class="form-control bg-light border-0" name="email"
                                             id="email" placeholder="Your Phone Number">
                                         <label for="email">Your Phone Number</label>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <!-- Campaign Selection -->
                                 <div class="col-12">
                                     <div class="form-floating">
@@ -72,7 +72,7 @@
                                     </div>
                                 </div>
                                 <!-- Hope For The Foundation -->
-                                <div class="col-12">
+                                {{-- <div class="col-12">
                                     <div class="form-floating">
                                         <input type="email" class="form-control bg-light border-0" name="email"
                                             id="email" placeholder="">
@@ -86,7 +86,7 @@
                                             id="email" placeholder="Your Phone Number">
                                         <label for="email">Hope For You</label>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <!-- Donation Options -->
                                 <div class="col-12">
                                     <div class="btn-group d-flex justify-content-around">
