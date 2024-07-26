@@ -9,6 +9,7 @@ use App\Models\Donate;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -62,7 +63,9 @@ class DonateResource extends Resource
                             ->image()
                             ->imageEditor()
                             ->openable()
-                            ->directory('donate')
+                            ->directory('donate'),
+                        Hidden::make('status')
+                            ->default('pending')
                     ])
             ]);
     }

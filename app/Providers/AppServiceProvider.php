@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\Donate;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
-use App\Models\Program; 
+use App\Models\Program;
+use App\Observers\DonateObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Donate::observe(DonateObserver::class);
+
         if ($this->app->environment('production')) {
             URL::forceScheme('https');
         }
@@ -31,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('layouts.navbar', function ($view) {
             // Ambil data program dari database atau dari sumber lain
             $programs = Program::all(); // Menggunakan Eloquent untuk mengambil semua program dari model Program
-    
+
             // Kirim data program ke view navbar
             $view->with('programs', $programs);
         });

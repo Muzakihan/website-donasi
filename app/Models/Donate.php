@@ -25,12 +25,19 @@ class Donate extends Model implements HasMedia
 
     protected $hidden = [];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($donate) {
+            if (is_null($donate->status)) {
+                $donate->status = 'pending';
+            }
+        });
+    }
+
     public function categoryDonate()
     {
         return $this->belongsTo(CategoryDonate::class, 'category_donate_id', 'id');
     }
-    // public function transactions()
-    // {
-    //     return $this->hasMany(Transaction::class, 'donate_id');
-    // }
 }

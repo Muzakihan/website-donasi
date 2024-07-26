@@ -52,13 +52,13 @@
                                     </div>
                                 </div>
                                 <!-- Phone Number -->
-                                {{-- <div class="col-12">
+                                <div class="col-12">
                                     <div class="form-floating">
-                                        <input type="email" class="form-control bg-light border-0" name="email"
-                                            id="email" placeholder="Your Phone Number">
-                                        <label for="email">Your Phone Number</label>
+                                        <input type="text" class="form-control bg-light border-0" name="phone_number"
+                                            id="phone_number" placeholder="Your Phone Number">
+                                        <label for="phone_number">Your Phone Number</label>
                                     </div>
-                                </div> --}}
+                                </div>
                                 <!-- Campaign Selection -->
                                 <div class="col-12">
                                     <div class="form-floating">
@@ -72,21 +72,21 @@
                                     </div>
                                 </div>
                                 <!-- Hope For The Foundation -->
-                                {{-- <div class="col-12">
+                                <div class="col-12">
                                     <div class="form-floating">
-                                        <input type="email" class="form-control bg-light border-0" name="email"
-                                            id="email" placeholder="">
-                                        <label for="email">Hope For The Foundation</label>
+                                        <input type="text" class="form-control bg-light border-0" name="hope_for_foundation"
+                                            id="hope_for_foundation" placeholder="">
+                                        <label for="hope_for_foundation">Hope For The Foundation</label>
                                     </div>
                                 </div>
                                 <!-- Hope For You -->
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <input type="email" class="form-control bg-light border-0" name="email"
-                                            id="email" placeholder="Your Phone Number">
-                                        <label for="email">Hope For You</label>
+                                        <input type="text" class="form-control bg-light border-0" name="hope_for_you"
+                                            id="hope_for_you" placeholder="">
+                                        <label for="hope_for_you">Hope For You</label>
                                     </div>
-                                </div> --}}
+                                </div>
                                 <!-- Donation Options -->
                                 <div class="col-12">
                                     <div class="btn-group d-flex justify-content-around">
@@ -114,9 +114,9 @@
                                 <div class="col-12">
                                     <div id="custom_amount_container" class="mt-2 d-flex align-items-center">
                                         <div class="me-2 rounded p-2" style="background-color: #cccccc;">Rp.</div>
-                                        <input type="text" name="custom_amount" id="custom_amount" class="form-control"
-                                            placeholder="Adjust your donation amount" oninput="formatCurrency(this)"
-                                            disabled>
+                                        <input type="text" name="custom_amount" id="custom_amount"
+                                            class="form-control" placeholder="Adjust your donation amount"
+                                            oninput="formatCurrency(this)" disabled>
                                     </div>
                                 </div>
                                 <div class="col-12 mt-3">

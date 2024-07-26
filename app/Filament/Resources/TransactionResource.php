@@ -29,6 +29,11 @@ class TransactionResource extends Resource
 
     protected static ?string $navigationGroup = 'Donate';
 
+    public static function canCreate(): bool
+    {
+        return false;
+    }
+
     public static function form(Form $form): Form
     {
         return $form
@@ -44,12 +49,16 @@ class TransactionResource extends Resource
                         TextInput::make('email')
                             ->email()
                             ->required(),
+                        TextInput::make('phone_number')
+                            ->tel()
+                            ->required(),
                         Select::make('donate_id')
                             ->label('Donate')
                             ->options(Donate::all()->pluck('name', 'id'))
                             ->required(),
-                        RichEditor::make('description')
-                            ->disableToolbarButtons(['attachFiles'])
+                        RichEditor::make('hope_for_foundation')
+                            ->required(),
+                        RichEditor::make('hope_for_you')
                             ->required(),
                         TextInput::make('donate_price')
                             ->mask(RawJs::make('$money($input)'))
@@ -67,6 +76,7 @@ class TransactionResource extends Resource
             ->columns([
                 TextColumn::make('username')->sortable()->searchable(),
                 TextColumn::make('email')->sortable()->searchable(),
+                TextColumn::make('phone_number')->sortable()->searchable(),
                 TextColumn::make('donate.name')->sortable()->searchable(),
                 TextColumn::make('donate_price')
                     ->sortable()
@@ -78,13 +88,22 @@ class TransactionResource extends Resource
                             return false;
                         }
                     }),
+                TextColumn::make('hope_for_foundation')->label("Hope For Foundation")
+                    ->html()
+                    ->wrap()
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('hope_for_you')->label("Hope For You")
+                    ->html()
+                    ->wrap()
+                    ->sortable()
+                    ->searchable(),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
-                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -104,8 +123,8 @@ class TransactionResource extends Resource
     {
         return [
             'index' => Pages\ListTransactions::route('/'),
-            'create' => Pages\CreateTransaction::route('/create'),
-            'edit' => Pages\EditTransaction::route('/{record}/edit'),
+            // 'create' => Pages\CreateTransaction::route('/create'),
+            // 'edit' => Pages\EditTransaction::route('/{record}/edit'),
         ];
     }
 }

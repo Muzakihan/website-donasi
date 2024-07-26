@@ -14,7 +14,9 @@ class Transaction extends Model
         'donate_id',
         'username',
         'email',
-        'description',
+        'phone_number',
+        'hope_for_foundation',
+        'hope_for_you',
         'donate_price',
         'snap_token',
     ];
@@ -24,19 +26,5 @@ class Transaction extends Model
     public function donate()
     {
         return $this->belongsTo(Donate::class, 'donate_id', 'id');
-    }
-
-    protected static function booted()
-    {
-        static::created(function ($transaction) {
-            $donate = $transaction->donate;
-            $donate->current_price += $transaction->donate_price;
-            if ($donate->current_price >= $donate->goal_price) {
-                $donate->status = 'success';
-            } elseif ($donate->current_price <= $donate->goal_price) {
-                $donate->status = 'pending';
-            }
-            $donate->save();
-        });
     }
 }

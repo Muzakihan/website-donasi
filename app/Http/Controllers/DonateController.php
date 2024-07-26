@@ -17,8 +17,11 @@ class DonateController extends Controller
 {
     public function index()
     {
-        $donates = Donate::all();
-
+        if (auth()->user()->is_admin) {
+            $donates = Donate::all();
+        } else {
+            $donates = Donate::where('status', 'pending')->get();
+        }
         return view('pages.donate', compact('donates'));
     }
 
@@ -32,13 +35,15 @@ class DonateController extends Controller
             $data['donate_price'] = $request->donate_price;
         }
 
-        $donates = Donate::findOrFail($data['donate_id']);
+        $donate = Donate::findOrFail($data['donate_id']);
 
-        if ($donates->current_price !== null) {
-            $donates->current_price += $data['donate_price'];
-        } else {
-            $donates->current_price = $data['donate_price'];
-        }
+        DB::transaction(function () use ($donate, $data) {
+            if ($donate->current_price !== null) {
+                $donate->current_price += $data['donate_price'];
+            } else {
+                $donate->current_price = $data['donate_price'];
+            }
+        });
 
         \Midtrans\Config::$serverKey = config('midtrans.serverKey');
         \Midtrans\Config::$isProduction = false;
@@ -52,8 +57,11 @@ class DonateController extends Controller
             ),
 
             'customer_details' => array(
-                'first_name' => $data['username'],
+                'username' => $data['username'],
                 'email' => $data['email'],
+                'phone_number' => $data['phone_number'],
+                'hope_for_foundation' => $data['hope_for_foundation'],
+                'hope_for_you' => $data['hope_for_you'],
             ),
 
             'callbacks' => array(
@@ -69,6 +77,9 @@ class DonateController extends Controller
                     'donate_id' => $data['donate_id'],
                     'username' => $data['username'],
                     'email' => $data['email'],
+                    'phone_number' => $data['phone_number'],
+                    'hope_for_foundation' => $data['hope_for_foundation'],
+                    'hope_for_you' => $data['hope_for_you'],
                     'donate_price' => $data['donate_price'],
                     'snap_token' => $snapToken->token
                 ]
@@ -92,7 +103,6 @@ class DonateController extends Controller
 
             return redirect()->route('success');
         } catch (\Exception $e) {
-            Log::error($e->getMessage());
             return redirect()->route('home')->with('error', 'Terjadi kesalahan saat memproses transaksi: ' . $e->getMessage());
         }
     }

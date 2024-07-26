@@ -16,7 +16,9 @@ return new class extends Migration
             $table->unsignedBigInteger('donate_id');
             $table->string('username');
             $table->string('email')->nullable();
-            $table->longText('description')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->longText('hope_for_foundation')->nullable();
+            $table->longText('hope_for_you')->nullable();
             $table->integer('donate_price');
             $table->string('snap_token')->nullable();
             $table->timestamps();
