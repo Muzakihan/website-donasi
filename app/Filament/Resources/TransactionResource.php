@@ -75,8 +75,29 @@ class TransactionResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('username')->sortable()->searchable(),
-                TextColumn::make('email')->sortable()->searchable(),
-                TextColumn::make('phone_number')->sortable()->searchable(),
+                TextColumn::make('email')
+                    ->sortable()
+                    ->searchable()
+                    ->url(function ($record) {
+                        if ($record->email === NULL) {
+                            return null;
+                        } else {
+                            $emailLink = 'mailto:' . $record->email;
+                            return $emailLink;
+                        }
+                    }),
+                TextColumn::make('phone_number')
+                    ->sortable()
+                    ->searchable()
+                    ->url(function ($record) {
+                        if ($record->phone_number === NULL) {
+                            return null;
+                        } else {
+                            $waLink = 'https://wa.me/' . $record->phone_number;
+                            return $waLink;
+                        }
+                    })
+                    ->html(),
                 TextColumn::make('donate.name')->sortable()->searchable(),
                 TextColumn::make('donate_price')
                     ->sortable()

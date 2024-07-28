@@ -27,4 +27,23 @@ class Transaction extends Model
     {
         return $this->belongsTo(Donate::class, 'donate_id', 'id');
     }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($transaction) {
+            $transaction->phone_number = self::formatPhoneNumber($transaction->phone_number);
+        });
+    }
+
+    private static function formatPhoneNumber($phone_number)
+    {
+        // Jika nomor telepon dimulai dengan '0', ubah menjadi '62'
+        if (substr($phone_number, 0, 1) === '0') {
+            return '62' . substr($phone_number, 1);
+        }
+
+        return $phone_number;
+    }
 }
