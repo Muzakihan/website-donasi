@@ -26,12 +26,13 @@ class DonateController extends Controller
     {
         $data = $request->all();
 
+        $data['phone_number'] = $request->country_code . preg_replace('/[^0-9]/', '', $request->phone_number);
         if ($request->donate_price === 'custom') {
             $data['donate_price'] = preg_replace('/[^0-9]/', '', $request->custom_amount);
         } else {
             $data['donate_price'] = $request->donate_price;
         }
-
+        unset($data['country_code']);
         $donate = Donate::findOrFail($data['donate_id']);
 
         DB::transaction(function () use ($donate, $data) {

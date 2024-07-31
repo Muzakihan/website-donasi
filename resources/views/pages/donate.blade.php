@@ -54,11 +54,25 @@
                                 <!-- Phone Number -->
                                 <div class="col-12">
                                     <div class="form-floating">
+                                        <select class="form-control bg-light border-0" name="country_code"
+                                            id="country_code">
+                                            <option value="+62" selected>+62 (Indonesia)</option>
+                                            <option value="+1">+1 (USA)</option>
+                                            <option value="+44">+44 (UK)</option>
+                                            <!-- Tambahkan opsi lainnya sesuai kebutuhan -->
+                                        </select>
+                                        <label for="country_code">Kode Negara</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-floating">
                                         <input type="text" class="form-control bg-light border-0" name="phone_number"
                                             id="phone_number" placeholder="Your Phone Number">
                                         <label for="phone_number">Your Phone Number</label>
                                     </div>
                                 </div>
+
                                 <!-- Campaign Selection -->
                                 <div class="col-12">
                                     <div class="form-floating">
@@ -74,8 +88,8 @@
                                 <!-- Hope For The Foundation -->
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control bg-light border-0" name="hope_for_foundation"
-                                            id="hope_for_foundation" placeholder="">
+                                        <input type="text" class="form-control bg-light border-0"
+                                            name="hope_for_foundation" id="hope_for_foundation" placeholder="">
                                         <label for="hope_for_foundation">Hope For The Foundation</label>
                                     </div>
                                 </div>
