@@ -27,6 +27,7 @@ class DonateController extends Controller
         $data = $request->all();
 
         $data['phone_number'] = $request->country_code . preg_replace('/[^0-9]/', '', $request->phone_number);
+
         if ($request->donate_price === 'custom') {
             $data['donate_price'] = preg_replace('/[^0-9]/', '', $request->custom_amount);
         } else {
