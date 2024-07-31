@@ -1,6 +1,6 @@
 /********** Template CSS **********/
 :root {
-    --primary: #ff6f0f;
+    --primary: rgba(1, 148, 243, 1.00);;
     --secondary: #fff0e6;
     --light: #f8f8f9;
     --dark: #001d23;
@@ -103,6 +103,30 @@
 .navbar .navbar-nav .nav-link.active {
     color: var(--primary);
 }
+.input-text {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #787878;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    appearance: none;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+/* Warna latar belakang input saat disabled */
+#custom_amount {
+    background-color: #eeecec; /* Warna abu-abu saat tidak aktif */
+}
+
+/* Warna latar belakang input saat diaktifkan */
+#custom_amount.active {
+    background-color: #ffffff; /* Warna putih saat diaktifkan */
+}
+
 
 @media (max-width: 991.98px) {
     .navbar .navbar-nav {
@@ -147,7 +171,7 @@
     }
 }
 .navbar{
-    background-color: #001d23;
+    background-color: #002238;
     margin: 10px;
     border-radius: 10px;
     position: static;

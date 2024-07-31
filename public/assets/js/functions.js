@@ -1,11 +1,17 @@
-// Function to toggle the custom amount input field
 function toggleCustomAmount(enable) {
     const customAmountInput = document.getElementById("custom_amount");
-    customAmountInput.disabled = !enable;
+    customAmountInput.disabled = !enable; // Aktifkan atau nonaktifkan input
+
     if (!enable) {
-        customAmountInput.value = "";
+        customAmountInput.value = ""; // Kosongkan input jika dinonaktifkan
+        customAmountInput.classList.remove("active"); // Hapus kelas aktif
+        customAmountInput.style.backgroundColor = "#e9ecef"; // Ubah warna latar belakang menjadi abu-abu
+    } else {
+        customAmountInput.classList.add("active"); // Tambahkan kelas aktif
+        customAmountInput.style.backgroundColor = "#ffffff"; // Ubah warna latar belakang menjadi putih
     }
 }
+
 
 // Function to format the input value as currency
 function formatCurrency(input) {

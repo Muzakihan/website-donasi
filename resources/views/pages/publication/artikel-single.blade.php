@@ -21,12 +21,12 @@
     <!-- Page Header End -->
 
     <!-- Article Start -->
-    <div class="container py-5">
-        <div class=" header-single-post container-fluid mb-5 wow fadeIn" data-wow-delay="0.1s">
-            <img class="logo h-auto" src="{{ Storage::url($singleArticle->photos) }}" alt="{{ $singleArticle->title }}" alt="" style="width: 100%;">
+    <div class="container main-container py-5  mr-5 ml-5" style="max-width: 100%">
+        <div class=" header-single-post container-fluid mb-5 mb-md-0 wow fadeIn" data-wow-delay="0.1s">
+            <img class=" h-auto" src="{{ Storage::url($singleArticle->photos) }}" alt="{{ $singleArticle->title }}" alt="" style="width: 100%;">
         </div>
 
-        <div class="d-flex">
+        <div class="container-article d-flex flex-column p-3  flex-md-row">
             <div class="social-media-blog d-flex flex-column gap-2 m-5 align-items-center">
                 <p>Sosial</p>
                 <a class="btn py-2 px-3" href="#">
@@ -45,20 +45,20 @@
                     </div>
                 </a>
             </div>
-    
-            <div class="header-media-blog">
+        
+            <div class="header-media-blog flex-grow-1">
                 <h1>{{ $singleArticle->title }}</h1>
                 <p>{{ $singleArticle->categoryArticle->name ?? 'Uncategorized' }} - {{ $singleArticle->created_at->format('d/m/Y') }}</p>
                 <div class="content-blog article-content mt-5">
                     {!! $singleArticle->content !!}
                 </div>
-                
             </div>
         </div>
+        
     </div>
     <!-- Article End -->
 
-    <hr class="mt-5 mb-5">
+    <hr class="mt-2 mb-2">
 
     <!-- Related Articles Start -->
     <h1 class="text-center text-black animated slideInDown mb-4 mt-4">Berita Lainnya</h1>

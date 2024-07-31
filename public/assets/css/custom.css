@@ -1,5 +1,5 @@
 :root {
-    --primary: #ff6f0f;
+    --primary: rgba(1, 148, 243, 1.00);;
     --primary-blur: #fc813050;
     --secondary: #fff0e6;
     --light: #f8f8f9;
@@ -13,6 +13,13 @@
 }
 .card-title {
     color: orange;
+}
+.main-container{
+    width: 1000px;
+}
+.header-media-blog{
+    width: 500px;
+    margin-top: 50px;
 }
 .accordion {
     background-color: white;
@@ -118,4 +125,49 @@
 
     .header-single-post img{
         border-radius: 40px;
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+        .content-teks-profil{
+            flex-direction: column;
+        }
+        .header-single-post img{
+            border-radius: 15px;
+        }
+    }
+    
+    /* Handphone (max-width: 767px) */
+    @media (max-width: 767px) {
+        .container-article{
+            flex-direction: column-reverse !important;
+        }
+        .content-teks-profil{
+            flex-direction: column-reverse;
+        }
+        .header-single-post img{
+            border-radius: 10px;
+        }
+        .social-media-blog {
+            flex-direction: row !important;
+            margin: 2rem 0 0 0 !important;
+            justify-content: center;
+        }
+        .social-media-blog p{
+            display: none;
+        }
+        .btn-sm-square {
+            width: 50px;
+            height: 50px;
+        }
+        .btn-sm-square i{
+            font-size: 25px
+            ;
+        }
+        .main-container{
+            width: 100%;
+        }
+        .header-media-blog{
+            width: 100%;
+            margin: 0px;
+        }
     }

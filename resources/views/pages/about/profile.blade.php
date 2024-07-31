@@ -27,7 +27,7 @@
             <div class="row g-5">
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="position-relative overflow-hidden h-100" style="min-height: 400px;">
-                        <img class="position-absolute w-100 h-100 pt-5 pe-5" src="assets/img/about-1.jpg" alt=""
+                        <img class="position-absolute w-100 h-100 pt-5" src="assets/img/about-1.jpg" alt=""
                             style="object-fit: cover;">
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="d-flex gap-5">
+                <div class="content-teks-profil d-flex gap-5">
                     <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
                         <p class="mb-5">
                             Yang melatar belakangi berdirinya Yayasan Anshor Yatim Dhuafa adalah adanya rasa keprihatinan
