@@ -17,11 +17,8 @@ class DonateController extends Controller
 {
     public function index()
     {
-        if (auth()->user()->is_admin) {
-            $donates = Donate::all();
-        } else {
-            $donates = Donate::where('status', 'pending')->get();
-        }
+        $donates = Donate::where('status', 'pending')->get();
+
         return view('pages.donate', compact('donates'));
     }
 
