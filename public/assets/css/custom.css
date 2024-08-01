@@ -1,5 +1,5 @@
 :root {
-    --primary: rgba(1, 148, 243, 1.00);;
+    --primary: rgba(1, 148, 243, 1);
     --primary-blur: #fc813050;
     --secondary: #fff0e6;
     --light: #f8f8f9;
@@ -14,16 +14,16 @@
 .card-title {
     color: orange;
 }
-.main-container{
+.main-container {
     width: 1000px;
 }
-.header-event{
+.header-event {
     margin: 0 250px;
 }
-.main-container-event{
+.main-container-event {
     width: 1400px;
 }
-.header-media-blog{
+.header-media-blog {
     width: 500px;
     margin-top: 50px;
 }
@@ -50,7 +50,7 @@
 
 .accordion .active,
 .accordion:hover {
-    background-color:var(--dark);
+    background-color: var(--dark);
     border: 2px solid var(--light);
     color: white;
     border-radius: 20px;
@@ -77,103 +77,162 @@
 .faq.active {
     border: none;
 }
-  .btn-whatsapp-pulse {
-      background: #25d366;
-      color: white;
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      font-size: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 70px;
-      height: 70px;
-      text-decoration: none;
-      border-radius: 50%;
-      animation-name: pulse;
-      animation-duration: 1.5s;
-      animation-timing-function: ease-out;
-      animation-iteration-count: infinite;
-      transition: width 0.3s ease, height 0.3s ease;
-    }
-    .btn-whatsapp-pulse,
-    .btn-whatsapp-pulse i:hover{
-        color: white;
-    }
-    @keyframes pulse {
-      0% {
+.btn-whatsapp-pulse {
+    background: #25d366;
+    color: white;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+    text-decoration: none;
+    border-radius: 50%;
+    animation-name: pulse;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-out;
+    animation-iteration-count: infinite;
+    transition:
+        width 0.3s ease,
+        height 0.3s ease;
+}
+.btn-whatsapp-pulse,
+.btn-whatsapp-pulse i:hover {
+    color: white;
+}
+@keyframes pulse {
+    0% {
         box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
-      }
-      80% {
+    }
+    80% {
         box-shadow: 0 0 0 14px rgba(37, 211, 102, 0);
-      }
     }
+}
 
-    .modal-text {
-      display: none;
-      position: fixed;
-      bottom: 100px;
-      left: 20px;
-      background: #25d365d2;
-      color: white;
-      padding: 10px;
-      border-radius: 5px;
-      z-index: 10;
-      transition: opacity 0.3s ease;
-    }
+.modal-text {
+    display: none;
+    position: fixed;
+    bottom: 100px;
+    left: 20px;
+    background: #25d365d2;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 10;
+    transition: opacity 0.3s ease;
+}
 
-    .btn-whatsapp-pulse:hover + .modal-text,
-    .modal-text:hover {
-      display: block;
-      opacity: 1;
-    }
+.btn-whatsapp-pulse:hover + .modal-text,
+.modal-text:hover {
+    display: block;
+    opacity: 1;
+}
 
-    .header-single-post img{
-        border-radius: 40px;
-    }
+.header-single-post img {
+    border-radius: 40px;
+}
 
-    @media (min-width: 768px) and (max-width: 1024px) {
-        .content-teks-profil{
-            flex-direction: column;
-        }
-        .header-single-post img{
-            border-radius: 15px;
-        }
+@media (min-width: 768px) and (max-width: 1024px) {
+    .content-teks-profil {
+        flex-direction: column;
     }
-    
-    /* Handphone (max-width: 767px) */
-    @media (max-width: 767px) {
-        .container-article{
-            flex-direction: column-reverse !important;
-        }
-        .content-teks-profil{
-            flex-direction: column-reverse;
-        }
-        .header-single-post img{
-            border-radius: 10px;
-        }
-        .social-media-blog {
-            flex-direction: row !important;
-            margin: 2rem 0 0 0 !important;
-            justify-content: center;
-        }
-        .social-media-blog p{
-            display: none;
-        }
-        .btn-sm-square {
-            width: 50px;
-            height: 50px;
-        }
-        .btn-sm-square i{
-            font-size: 25px
-            ;
-        }
-        .main-container{
-            width: 100%;
-        }
-        .header-media-blog{
-            width: 100%;
-            margin: 0px;
-        }
+    .header-single-post img {
+        border-radius: 15px;
     }
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-button {
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border: 1px solid #ddd;
+    max-height: 300px;
+    /* Maksimal tinggi untuk scroll jika banyak item */
+    overflow-y: auto;
+    /* Tambahkan scroll jika melebihi tinggi */
+}
+
+.dropdown-content .search-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    /* Ruang antara input dan opsi */
+}
+
+.country-option {
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.country-option img {
+    width: 24px;
+    height: 16px;
+    margin-right: 8px;
+}
+
+.country-option:hover {
+    background-color: #ddd;
+}
+
+
+.search-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    width: calc(100% - 16px);
+    box-sizing: border-box;
+    margin: 8px;
+}
+/* Handphone (max-width: 767px) */
+@media (max-width: 767px) {
+    .container-article {
+        flex-direction: column-reverse !important;
+    }
+    .content-teks-profil {
+        flex-direction: column-reverse;
+    }
+    .header-single-post img {
+        border-radius: 10px;
+    }
+    .social-media-blog {
+        flex-direction: row !important;
+        margin: 2rem 0 0 0 !important;
+        justify-content: center;
+    }
+    .social-media-blog p {
+        display: none;
+    }
+    .btn-sm-square {
+        width: 50px;
+        height: 50px;
+    }
+    .btn-sm-square i {
+        font-size: 25px;
+    }
+    .main-container {
+        width: 100%;
+    }
+    .header-media-blog {
+        width: 100%;
+        margin: 0px;
+    }
+}

@@ -1,5 +1,9 @@
+# .editorconfig
+
+# Top-most EditorConfig file
 root = true
 
+# Universal settings
 [*]
 charset = utf-8
 end_of_line = lf
@@ -8,11 +12,14 @@ indent_style = space
 insert_final_newline = true
 trim_trailing_whitespace = true
 
+# Markdown files settings
 [*.md]
 trim_trailing_whitespace = false
 
+# YAML files settings
 [*.{yml,yaml}]
 indent_size = 2
 
+# Specific settings for docker-compose.yml
 [docker-compose.yml]
 indent_size = 4

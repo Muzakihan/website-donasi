@@ -1,11 +1,11 @@
 (function ($) {
-    "use strict";
+    'use strict';
 
     // Spinner
     var spinner = function () {
         setTimeout(function () {
-            if ($("#spinner").length > 0) {
-                $("#spinner").removeClass("show");
+            if ($('#spinner').length > 0) {
+                $('#spinner').removeClass('show');
             }
         }, 1);
     };
@@ -18,15 +18,15 @@
     $(window).scroll(function () {
         if ($(window).width() < 992) {
             if ($(this).scrollTop() > 45) {
-                $(".fixed-top").addClass("bg-dark shadow");
+                $('.fixed-top').addClass('bg-dark shadow');
             } else {
-                $(".fixed-top").removeClass("bg-dark shadow");
+                $('.fixed-top').removeClass('bg-dark shadow');
             }
         } else {
             if ($(this).scrollTop() > 45) {
-                $(".fixed-top").addClass("bg-dark shadow").css("top", -45);
+                $('.fixed-top').addClass('bg-dark shadow').css('top', -45);
             } else {
-                $(".fixed-top").removeClass("bg-dark shadow").css("top", 0);
+                $('.fixed-top').removeClass('bg-dark shadow').css('top', 0);
             }
         }
     });
@@ -34,28 +34,28 @@
     // Back to top button
     $(window).scroll(function () {
         if ($(this).scrollTop() > 300) {
-            $(".back-to-top").fadeIn("slow");
+            $('.back-to-top').fadeIn('slow');
         } else {
-            $(".back-to-top").fadeOut("slow");
+            $('.back-to-top').fadeOut('slow');
         }
     });
-    $(".back-to-top").click(function () {
-        $("html, body").animate({ scrollTop: 0 }, 1500, "easeInOutExpo");
+    $('.back-to-top').click(function () {
+        $('html, body').animate({ scrollTop: 0 }, 1500, 'easeInOutExpo');
         return false;
     });
 
     // Causes progress
-    $(".causes-progress").waypoint(
+    $('.causes-progress').waypoint(
         function () {
-            $(".progress .progress-bar").each(function () {
-                $(this).css("width", $(this).attr("aria-valuenow") + "%");
+            $('.progress .progress-bar').each(function () {
+                $(this).css('width', $(this).attr('aria-valuenow') + '%');
             });
         },
-        { offset: "80%" }
+        { offset: '80%' }
     );
 
     // Testimonials carousel
-    $(".testimonial-carousel").owlCarousel({
+    $('.testimonial-carousel').owlCarousel({
         autoplay: false,
         smartSpeed: 1000,
         center: true,
@@ -77,38 +77,38 @@
     });
 })(jQuery);
 
-var acc = document.getElementsByClassName("accordion");
+var acc = document.getElementsByClassName('accordion');
 var i;
 
 for (i = 0; i < acc.length; i++) {
-    acc[i].addEventListener("click", function () {
-        this.classList.toggle("active-legal-formal");
-        this.parentElement.classList.toggle("active");
+    acc[i].addEventListener('click', function () {
+        this.classList.toggle('active-legal-formal');
+        this.parentElement.classList.toggle('active');
 
         var pannel = this.nextElementSibling;
 
-        if (pannel.style.display === "block") {
-            pannel.style.display = "none";
+        if (pannel.style.display === 'block') {
+            pannel.style.display = 'none';
         } else {
-            pannel.style.display = "block";
+            pannel.style.display = 'block';
         }
     });
 }
-const btnWhatsApp = document.querySelector(".btn-whatsapp-pulse");
-const modalText = document.querySelector(".modal-text");
+const btnWhatsApp = document.querySelector('.btn-whatsapp-pulse');
+const modalText = document.querySelector('.modal-text');
 
-btnWhatsApp.addEventListener("mouseover", () => {
-    modalText.style.display = "block";
+btnWhatsApp.addEventListener('mouseover', () => {
+    modalText.style.display = 'block';
 });
 
-btnWhatsApp.addEventListener("mouseout", () => {
-    modalText.style.display = "none";
+btnWhatsApp.addEventListener('mouseout', () => {
+    modalText.style.display = 'none';
 });
 
-modalText.addEventListener("mouseover", () => {
-    modalText.style.display = "block";
+modalText.addEventListener('mouseover', () => {
+    modalText.style.display = 'block';
 });
 
-modalText.addEventListener("mouseout", () => {
-    modalText.style.display = "none";
+modalText.addEventListener('mouseout', () => {
+    modalText.style.display = 'none';
 });

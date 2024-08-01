@@ -32,15 +32,15 @@
             </div>
             <div class="row g-4 justify-content-center">
                 @foreach ($articles as $article)
-                    <div class="col-lg-4 col-md-6 wow fadeInUp " data-wow-delay="0.1s">
-                        {{-- <div class="position-absolute top-0 start-0">
+                    <div class="col-lg-4 col-md-6 wow fadeInUp position-relative " data-wow-delay="0.1s">
+                        <div class="position-absolute top-0 start-0 pt-2 ps-4">
                             <div class="d-inline-block rounded bg-secondary text-primary py-1 px-3 mb-3">
                                 <i class="fa-solid fa-calendar"></i> {{ $article->created_at->format('d/m/Y') }}
                             </div>
                             <div class="d-inline-block rounded bg-secondary text-primary py-1 px-3 mb-3">
                                 {{ $article->categoryArticle->name ?? 'Uncategorized' }}
                             </div>
-                        </div> --}}
+                        </div>
                         <div class="service-item bg-white text-left h-100 ">
                             <img class="img-fluid mb-4 rounded-top" src="{{ Storage::url($article->photos) }}"
                                 alt="{{ $article->title }}">
@@ -55,7 +55,7 @@
                                         <p class="mb-4">{{ Str::limit(strip_tags($article->content), 50) }}</p>
                                     </div>
                                 </div>
-                                
+
                                 <a class="btn w-100 btn-outline-primary px-3" href="{{ route('event-single', $article->id) }}">
                                     Lihat Event
                                     <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">

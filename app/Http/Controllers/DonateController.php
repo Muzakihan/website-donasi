@@ -25,9 +25,8 @@ class DonateController extends Controller
     public function store(TransactionRequest $request)
     {
         $data = $request->all();
-
-        $data['phone_number'] = $request->country_code . preg_replace('/[^0-9]/', '', $request->phone_number);
-
+        $countryCode = preg_replace('/^\++/', '', $request->country_code);
+        $data['phone_number'] = '+' . preg_replace('/[^0-9]/', '', $countryCode . $request->phone_number);
         if ($request->donate_price === 'custom') {
             $data['donate_price'] = preg_replace('/[^0-9]/', '', $request->custom_amount);
         } else {
@@ -35,7 +34,6 @@ class DonateController extends Controller
         }
         unset($data['country_code']);
         $donate = Donate::findOrFail($data['donate_id']);
-
         DB::transaction(function () use ($donate, $data) {
             if ($donate->current_price !== null) {
                 $donate->current_price += $data['donate_price'];
