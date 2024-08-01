@@ -17,6 +17,12 @@
 .main-container{
     width: 1000px;
 }
+.header-event{
+    margin: 0 250px;
+}
+.main-container-event{
+    width: 1400px;
+}
 .header-media-blog{
     width: 500px;
     margin-top: 50px;

@@ -26,6 +26,7 @@ Route::get('jemput-layanan', [ServiceController::class, 'jemputLayanan'])->name(
 Route::get('kantor-layanan', [ServiceController::class, 'kantorLayanan'])->name('kantor-layanan');
 
 Route::get('event', [PublicationController::class, 'event'])->name('event');
+Route::get('event/{id}', [PublicationController::class, 'singleEvent'])->name('event-single');
 Route::get('articles', [PublicationController::class, 'article'])->name('articles');
 Route::get('articles/{id}', [PublicationController::class, 'singleArticle'])->name('single-article');
 Route::get('laporan-keuangan', [PublicationController::class, 'laporanKeuangan'])->name('laporan-keuangan');

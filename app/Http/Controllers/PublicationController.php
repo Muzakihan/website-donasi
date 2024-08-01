@@ -9,7 +9,8 @@ class PublicationController extends Controller
 {
     public function event()
     {
-        return view('pages.publication.event');
+        $articles = Article::with('categoryArticle')->get();
+        return view('pages.publication.event', compact('articles'));
     }
 
     public function article()
@@ -28,6 +29,13 @@ class PublicationController extends Controller
         $singleArticle = Article::with('categoryArticle')->findOrFail($id);
         $relatedArticles = Article::where('id', '!=', $id)->inRandomOrder()->limit(3)->get();
         return view('pages.publication.artikel-single', compact('singleArticle', 'relatedArticles'));
+    }
+
+    public function singleEvent($id)
+    {
+        $singleEvent = Article::with('categoryArticle')->findOrFail($id);
+        $relatedEvents = Article::where('id', '!=', $id)->inRandomOrder()->limit(3)->get();
+        return view('pages.publication.event-single', compact('singleEvent', 'relatedEvents'));
     }
     
 }
