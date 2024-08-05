@@ -25,14 +25,23 @@ class DonateController extends Controller
     public function store(TransactionRequest $request)
     {
         $data = $request->all();
+
         $countryCode = preg_replace('/^\++/', '', $request->country_code);
-        $data['phone_number'] = '+' . preg_replace('/[^0-9]/', '', $countryCode . $request->phone_number);
+
+        if (substr($request->phone_number, 0, 1) === '0') {
+            $fullPhoneNumber = '+' . preg_replace('/[^0-9]/', '', $countryCode . substr($request->phone_number, 1));
+        } elseif (substr($request->phone_number, 0, 1) !== '0') {
+            $fullPhoneNumber = '+' . preg_replace('/[^0-9]/', '', $countryCode . $request->phone_number);
+        }
+
+        unset($data['country_code']);
+
         if ($request->donate_price === 'custom') {
             $data['donate_price'] = preg_replace('/[^0-9]/', '', $request->custom_amount);
         } else {
             $data['donate_price'] = $request->donate_price;
         }
-        unset($data['country_code']);
+
         $donate = Donate::findOrFail($data['donate_id']);
         DB::transaction(function () use ($donate, $data) {
             if ($donate->current_price !== null) {
@@ -41,6 +50,7 @@ class DonateController extends Controller
                 $donate->current_price = $data['donate_price'];
             }
         });
+
 
         \Midtrans\Config::$serverKey = config('midtrans.serverKey');
         \Midtrans\Config::$isProduction = false;
@@ -56,7 +66,7 @@ class DonateController extends Controller
             'customer_details' => array(
                 'username' => $data['username'],
                 'email' => $data['email'],
-                'phone_number' => $data['phone_number'],
+                'phone_number' => $fullPhoneNumber,
                 'hope_for_foundation' => $data['hope_for_foundation'],
                 'hope_for_you' => $data['hope_for_you'],
             ),
@@ -74,13 +84,15 @@ class DonateController extends Controller
                     'donate_id' => $data['donate_id'],
                     'username' => $data['username'],
                     'email' => $data['email'],
-                    'phone_number' => $data['phone_number'],
+                    'phone_number' => $fullPhoneNumber,
                     'hope_for_foundation' => $data['hope_for_foundation'],
                     'hope_for_you' => $data['hope_for_you'],
                     'donate_price' => $data['donate_price'],
                     'snap_token' => $snapToken->token
                 ]
             ]);
+
+            // dd(session('transaction_data'));
 
             return redirect()->away($snapToken->redirect_url);
         } catch (\Exception $e) {
@@ -91,6 +103,9 @@ class DonateController extends Controller
     public function callback(Request $request)
     {
         $transactionData = session('transaction_data');
+
+        // dd($transactionData);
+
         try {
             Transaction::create($transactionData);
 
