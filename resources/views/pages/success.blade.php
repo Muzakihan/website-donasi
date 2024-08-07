@@ -1,10 +1,11 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Thanks | Pointsebelas</title>
+    <title>Thanks | Donasi</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -40,17 +41,24 @@
     <script src="https://2-22-4-dot-lead-pages.appspot.com/static/lp918/min/jquery-1.9.1.min.js"></script>
     <script src="https://2-22-4-dot-lead-pages.appspot.com/static/lp918/min/html5shiv.js"></script>
     <script>
-        var countdown = 10;
-        var countdownInterval = setInterval(function() {
-            countdown--;
+        document.addEventListener('DOMContentLoaded', function() {
+            var countdown = 10;
+            var previousUrl = document.referrer || '/';
+            var countdownInterval = setInterval(function() {
+                countdown--;
+                document.getElementById('countdown').innerText = countdown;
 
-            document.getElementById('countdown').innerText = countdown;
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval);
+                    window.location.href = previousUrl;
+                }
+            }, 1000);
 
-            if (countdown <= 0) {
-                clearInterval(countdownInterval);
-                window.location.href = "{{ route('donate.index') }}";
-            }
-        }, 1000);
+            document.getElementById('exit-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = previousUrl;
+            });
+        });
     </script>
 </head>
 
@@ -63,11 +71,11 @@
         <h1 class="site-header__title" data-lead-id="site-header-title">TERIMA KASIH!</h1>
         <p class="main-content__body" data-lead-id="main-content-body">Sudah Mendonasi, Semoga Kamu Sehat Selalu...</p>
         <br>
-        <a href="{{ route('donate.index') }}" class="btn-go-shopping ">Go To Donate</a>
+        <a href="#" id="exit-link" class="btn-go-shopping">Go To Donate</a>
     </div>
 
     <footer class="site-footer" id="footer">
-        <p class="site-footer__fineprint" data-lead-id="main-content-body">Redirecting in <span id="countdown">5</span>
+        <p class="site-footer__fineprint" data-lead-id="main-content-body">Redirecting in <span id="countdown">10</span>
             seconds...</p>
     </footer>
 </body>

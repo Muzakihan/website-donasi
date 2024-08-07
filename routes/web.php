@@ -39,12 +39,10 @@ Route::get('/programs', [ProgramController::class, 'index'])->name('programs.ind
 Route::get('/program/{id}', [ProgramController::class, 'show'])->name('program.show');
 Route::get('/program/{id}/photos', [ProgramController::class, 'getPhotos'])->name('program.photos');
 
-
 Route::get('/donate', [DonateController::class, 'index'])->name('donate.index');
 Route::post('/donate', [DonateController::class, 'store'])->name('donate.store');
 Route::get('/success', [DonateController::class, 'success'])->name('success');
-Route::get('/callback', [DonateController::class, 'callback'])->name('callback');
-
+Route::get('/finish', [DonateController::class, 'finish'])->name('finish');
 
 Route::get('team', [OurTeamController::class, 'index'])->name('team');
 Route::get('contact', [ContacController::class, 'index'])->name('contact');

@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -32,6 +31,12 @@ class Donate extends Model implements HasMedia
         static::creating(function ($donate) {
             if (is_null($donate->status)) {
                 $donate->status = 'pending';
+            }
+        });
+
+        static::saving(function ($donate) {
+            if ($donate->current_price >= $donate->goal_price) {
+                $donate->status = 'success';
             }
         });
     }

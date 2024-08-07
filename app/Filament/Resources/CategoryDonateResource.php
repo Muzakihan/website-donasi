@@ -3,19 +3,14 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\CategoryDonateResource\Pages;
-use App\Filament\Resources\CategoryDonateResource\RelationManagers;
 use App\Models\CategoryDonate;
-use Filament\Forms;
 use Filament\Forms\Components\Grid;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class CategoryDonateResource extends Resource
 {

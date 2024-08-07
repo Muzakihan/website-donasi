@@ -32,7 +32,7 @@
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                     <div class="h-100 bg-secondary p-5">
                         <!-- Donation Form -->
-                        <form method="POST" action="{{ route('donate.store') }}" enctype="multipart/form-data">
+                        <form id="donate-form" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row g-3">
                                 <!-- Username -->
@@ -170,7 +170,10 @@
                         <div
                             class="causes-item d-flex flex-column bg-white border-top border-5 border-primary rounded overflow-hidden h-100">
                             <div class="position-relative mt-auto">
-                                <img class="img-fluid rounded" src="{{ Storage::url($donate->photos) }}" alt="">
+                                @if ($donate->photos)
+                                    <img class="img-fluid rounded" src="{{ Storage::url($donate->photos) }}"
+                                        alt="">
+                                @endif
                                 <div class="causes-overlay rounded-bottom">
                                     <a class="btn btn-outline-primary" href="">
                                         Read More
@@ -203,4 +206,105 @@
             </div>
         </div>
     </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="modal fade" tabindex="-1" aria-labelledby="confirmationModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmationModalLabel">Confirm Exit</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>If you leave this page, your payment will be canceled. Are you sure you want to leave?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="stay-on-page" class="btn btn-secondary" data-bs-dismiss="modal">Stay on
+                        Page</button>
+                    <a href="" id="exit-link" class="btn btn-primary">Leave Page</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
+    <script>
+        let snapToken = '';
+        let hasClickedLeavePage = false;
+
+        document.getElementById('pay-button').addEventListener('click', function(e) {
+            e.preventDefault();
+
+            var form = document.getElementById('donate-form');
+            var formData = new FormData(form);
+
+            var previousPageUrl = window.location.href;
+
+            fetch('{{ route('donate.store') }}', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
+                            'content'),
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(Object.fromEntries(formData))
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.snap_token) {
+                        snapToken = data.snap_token;
+                        snap.pay(data.snap_token, {
+                            onSuccess: function(result) {
+                                console.log('Payment success', result);
+                                window.location.href = '/finish';
+                            },
+                            onPending: function(result) {
+                                console.log('Waiting for payment', result);
+                                var modal = new bootstrap.Modal(document.getElementById(
+                                    'confirmationModal'));
+                                modal.show();
+
+                                var stayOnPageButton = document.getElementById('stay-on-page');
+                                stayOnPageButton.addEventListener('click', function() {
+                                    modal.hide();
+                                    hasClickedLeavePage = false;
+                                    snap.pay(snapToken, {
+                                        onSuccess: function(result) {
+                                            console.log('Payment success',
+                                                result);
+                                            window.location.href = '/finish';
+                                        },
+                                        onPending: function(result) {
+                                            console.log('Waiting for payment',
+                                                result);
+                                            modal.show();
+                                        },
+                                        onError: function(result) {
+                                            console.log('Payment failed',
+                                                result);
+                                            alert('Payment failed');
+                                        }
+                                    });
+                                });
+
+                                var exitLink = document.getElementById('exit-link');
+                                exitLink.href = previousPageUrl;
+                                exitLink.addEventListener('click', function() {
+                                    hasClickedLeavePage =
+                                        true;
+                                });
+                            },
+                            onError: function(result) {
+                                console.log('Payment failed', result);
+                                alert('Payment failed');
+                            },
+                        });
+                    } else {
+                        alert('Error fetching snap token');
+                    }
+                })
+                .catch(error => console.error('Error fetching snap token:', error));
+        });
+    </script>
 @endsection

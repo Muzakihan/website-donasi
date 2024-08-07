@@ -71,8 +71,8 @@
             <div class="row g-5">
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="position-relative overflow-hidden h-100" style="min-height: 400px;">
-                        <img class="about-img img-fluid position-absolute w-100 h-100 pt-5 " src="assets/img/about-1.jpg" alt=""
-                            style="object-fit: cover;">
+                        <img class="about-img img-fluid position-absolute w-100 h-100 pt-5 " src="assets/img/about-1.jpg"
+                            alt="" style="object-fit: cover;">
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
@@ -180,7 +180,7 @@
                 </div>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                     <div class="h-100 bg-white p-5">
-                        <form method="POST" action="{{ route('donate.store') }}" enctype="multipart/form-data">
+                        <form id="donate-form" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row g-3">
                                 <!-- Username -->
@@ -202,19 +202,21 @@
                                 <!-- Phone Number -->
                                 <div class="col-12">
                                     <div class="d-flex align-items-center">
-                                        <div class="me-2" style="flex: 0 0 100px;"> <!-- Lebar dropdown kode negara diatur menjadi 80px -->
-                                            <select class="form-control bg-light border-0 py-3 pe-2" name="country_code" id="country_code">
-                                                <option value="+62" selected>+62 (IDN)</option>
-                                                <option value="+1">+1 (USA)</option>
-                                                <option value="+44">+44 (UK)</option>
-                                                <!-- Tambahkan opsi lainnya sesuai kebutuhan -->
-                                            </select>
+                                        <div class="me-2" style="flex: 0 0 100px;">
+                                            <div class="dropdown">
+                                                <div class="dropdown-button">Pilih Negara</div>
+                                                <div class="dropdown-content" id="countryDropdown">
+                                                    <input type="text" class="search-input" id="searchInput"
+                                                        placeholder="Cari negara...">
+                                                    <div id="countryList"></div>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" name="country_code" id="country_code">
                                         </div>
                                         <div class="flex-grow-1 ">
-                                            <input type="text" class="form-control bg-light border-0 py-3 pe-2" name="phone_number" id="phone_number"
-                                                placeholder="Your Phone Number">
+                                            <input type="text" class="form-control bg-light border-0 py-3 pe-2"
+                                                name="phone_number" id="phone_number" placeholder="Your Phone Number">
                                         </div>
-                                        
                                     </div>
                                 </div>
 
@@ -251,40 +253,47 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="btn-group d-flex flex-wrap justify-content-around">
-                                                <input type="radio" class="btn-check" name="donate_price" id="donate_option1"
-                                                    value="10000" onclick="toggleCustomAmount(false)">
-                                                <label class="btn btn-light py-3 m-1" for="donate_option1">Rp.10.000</label>
-                                                
-                                                <input type="radio" class="btn-check" name="donate_price" id="donate_option2"
-                                                    value="20000" onclick="toggleCustomAmount(false)">
-                                                <label class="btn btn-light py-3 m-1" for="donate_option2">Rp.20.000</label>
-                                                
-                                                <input type="radio" class="btn-check" name="donate_price" id="donate_option3"
-                                                    value="30000" onclick="toggleCustomAmount(false)">
-                                                <label class="btn btn-light py-3 m-1" for="donate_option3">Rp.30.000</label>
-                                                
-                                                <input type="radio" class="btn-check" name="donate_price" id="donate_custom"
-                                                    value="custom" onclick="toggleCustomAmount(true)">
-                                                <label class="btn btn-light py-3 m-1" for="donate_custom">Custom Amount</label>
+                                                <input type="radio" class="btn-check" name="donate_price"
+                                                    id="donate_option1" value="10000"
+                                                    onclick="toggleCustomAmount(false)">
+                                                <label class="btn btn-light py-3 m-1"
+                                                    for="donate_option1">Rp.10.000</label>
+
+                                                <input type="radio" class="btn-check" name="donate_price"
+                                                    id="donate_option2" value="20000"
+                                                    onclick="toggleCustomAmount(false)">
+                                                <label class="btn btn-light py-3 m-1"
+                                                    for="donate_option2">Rp.20.000</label>
+
+                                                <input type="radio" class="btn-check" name="donate_price"
+                                                    id="donate_option3" value="30000"
+                                                    onclick="toggleCustomAmount(false)">
+                                                <label class="btn btn-light py-3 m-1"
+                                                    for="donate_option3">Rp.30.000</label>
+
+                                                <input type="radio" class="btn-check" name="donate_price"
+                                                    id="donate_custom" value="custom" onclick="toggleCustomAmount(true)">
+                                                <label class="btn btn-light py-3 m-1" for="donate_custom">Custom
+                                                    Amount</label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <!-- Custom Amount Input -->
                                 <div class="col-12 mt-3 mb-2">
                                     <p class="text-center mb-0"><strong>Or Adjust Your Donation </strong></p>
                                 </div>
                                 <div class="col-12">
                                     <div id="custom_amount_container" class="mt-2 d-flex align-items-center">
-                                        <div class="input-text rounded-start py-3 pe-2"  style="flex: 0 0 40px;">Rp.</div>
+                                        <div class="input-text rounded-start py-3 pe-2" style="flex: 0 0 40px;">Rp.</div>
                                         <input type="text" name="custom_amount" id="custom_amount"
-                                            class="flex-grow-1 input-text rounded-end  border-1 py-3 pe-2" 
-                                            placeholder="Adjust your donation amount" oninput="formatCurrency(this)" 
+                                            class="flex-grow-1 input-text rounded-end  border-1 py-3 pe-2"
+                                            placeholder="Adjust your donation amount" oninput="formatCurrency(this)"
                                             disabled>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-12 mt-3">
                                     <button type="submit" class="btn btn-primary" id="pay-button">Donate Now</button>
                                 </div>
@@ -474,4 +483,106 @@
         </div>
     </div>
     <!-- Testimonial End -->
+
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="modal fade" tabindex="-1" aria-labelledby="confirmationModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmationModalLabel">Confirm Exit</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>If you leave this page, your payment will be canceled. Are you sure you want to leave?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="stay-on-page" class="btn btn-secondary" data-bs-dismiss="modal">Stay on
+                        Page</button>
+                    <a href="" id="exit-link" class="btn btn-primary">Leave Page</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ ENV('MIDTRANS_CLIENT_KEY') }}"></script>
+    <script>
+        let snapToken = '';
+        let hasClickedLeavePage = false;
+
+        document.getElementById('pay-button').addEventListener('click', function(e) {
+            e.preventDefault();
+
+            var form = document.getElementById('donate-form');
+            var formData = new FormData(form);
+
+            var previousPageUrl = window.location.href;
+
+            fetch('{{ route('donate.store') }}', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
+                            'content'),
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(Object.fromEntries(formData))
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.snap_token) {
+                        snapToken = data.snap_token;
+                        snap.pay(data.snap_token, {
+                            onSuccess: function(result) {
+                                console.log('Payment success', result);
+                                window.location.href = '/finish';
+                            },
+                            onPending: function(result) {
+                                console.log('Waiting for payment', result);
+                                var modal = new bootstrap.Modal(document.getElementById(
+                                    'confirmationModal'));
+                                modal.show();
+
+                                var stayOnPageButton = document.getElementById('stay-on-page');
+                                stayOnPageButton.addEventListener('click', function() {
+                                    modal.hide();
+                                    hasClickedLeavePage = false;
+                                    snap.pay(snapToken, {
+                                        onSuccess: function(result) {
+                                            console.log('Payment success',
+                                                result);
+                                            window.location.href =
+                                                '/finish';
+                                        },
+                                        onPending: function(result) {
+                                            console.log('Waiting for payment',
+                                                result);
+                                            modal.show();
+                                        },
+                                        onError: function(result) {
+                                            console.log('Payment failed',
+                                                result);
+                                            alert('Payment failed');
+                                        }
+                                    });
+                                });
+
+                                var exitLink = document.getElementById('exit-link');
+                                exitLink.href = previousPageUrl;
+                                exitLink.addEventListener('click', function() {
+                                    hasClickedLeavePage =
+                                        true;
+                                });
+                            },
+                            onError: function(result) {
+                                console.log('Payment failed', result);
+                                alert('Payment failed');
+                            },
+                        });
+                    } else {
+                        alert('Error fetching snap token');
+                    }
+                })
+                .catch(error => console.error('Error fetching snap token:', error));
+        });
+    </script>
 @endsection

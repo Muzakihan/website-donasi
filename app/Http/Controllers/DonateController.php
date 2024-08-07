@@ -2,16 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\DonateRequest;
 use App\Http\Requests\TransactionRequest;
 use App\Jobs\SendEmailJob;
-use App\Mail\SendEmail;
 use App\Models\Donate;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
 
 class DonateController extends Controller
 {
@@ -26,12 +22,17 @@ class DonateController extends Controller
     {
         $data = $request->all();
 
-        $countryCode = preg_replace('/^\++/', '', $request->country_code);
+        $countryCode = preg_replace('/^\++/', '', $request->country_code ?? '');
+        $phone_number = $request->phone_number ?? '';
 
-        if (substr($request->phone_number, 0, 1) === '0') {
-            $fullPhoneNumber = '+' . preg_replace('/[^0-9]/', '', $countryCode . substr($request->phone_number, 1));
-        } elseif (substr($request->phone_number, 0, 1) !== '0') {
-            $fullPhoneNumber = '+' . preg_replace('/[^0-9]/', '', $countryCode . $request->phone_number);
+        if ($phone_number && $countryCode) {
+            if (substr($phone_number, 0, 1) === '0') {
+                $fullPhoneNumber = '+' . preg_replace('/[^0-9]/', '', $countryCode . substr($phone_number, 1));
+            } else {
+                $fullPhoneNumber = '+' . preg_replace('/[^0-9]/', '', $countryCode . $phone_number);
+            }
+        } else {
+            $fullPhoneNumber = null;
         }
 
         unset($data['country_code']);
@@ -59,7 +60,7 @@ class DonateController extends Controller
 
         $params = array(
             'transaction_details' => array(
-                'order_id' => rand(),
+                'order_id' => uniqid(),
                 'gross_amount' => $data['donate_price'],
             ),
 
@@ -72,12 +73,14 @@ class DonateController extends Controller
             ),
 
             'callbacks' => array(
-                'finish' => route('callback'),
+                'finish' => route('finish'),
             )
         );
 
+
+
         try {
-            $snapToken = \Midtrans\Snap::createTransaction($params);
+            $snapToken = \Midtrans\Snap::getSnapToken($params);
 
             session([
                 'transaction_data' => [
@@ -88,26 +91,28 @@ class DonateController extends Controller
                     'hope_for_foundation' => $data['hope_for_foundation'],
                     'hope_for_you' => $data['hope_for_you'],
                     'donate_price' => $data['donate_price'],
-                    'snap_token' => $snapToken->token
+                    'snap_token' => $snapToken
                 ]
             ]);
 
-            // dd(session('transaction_data'));
-
-            return redirect()->away($snapToken->redirect_url);
+            return response()->json([
+                'snap_token' => $snapToken
+            ]);
         } catch (\Exception $e) {
             return back()->withError('Terjadi kesalahan saat membuat transaksi pembayaran: ' . $e->getMessage());
         }
     }
 
-    public function callback(Request $request)
+    public function finish(Request $request)
     {
         $transactionData = session('transaction_data');
 
-        // dd($transactionData);
-
         try {
             Transaction::create($transactionData);
+
+            $donate = Donate::findOrFail($transactionData['donate_id']);
+            $donate->current_price = ($donate->current_price ?? 0) + $transactionData['donate_price'];
+            $donate->save();
 
             SendEmailJob::dispatch($transactionData);
 

@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index() 
+    public function index()
     {
-        $donates = Donate::with('categorydonate')->get();
+        $donates = Donate::where('status', 'pending')->with('categorydonate')->get();
 
         return view('pages.home', [
             'donates' => $donates

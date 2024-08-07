@@ -34,7 +34,7 @@ class AppServiceProvider extends ServiceProvider
         // Menggunakan view composer untuk navbar
         view()->composer('layouts.navbar', function ($view) {
             // Ambil data program dari database atau dari sumber lain
-            $programs = Program::all(); // Menggunakan Eloquent untuk mengambil semua program dari model Program
+            $programs = Program::all(); 
 
             // Kirim data program ke view navbar
             $view->with('programs', $programs);
