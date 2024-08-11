@@ -25,7 +25,7 @@ class DonateResource extends Resource
 {
     protected static ?string $model = Donate::class;
 
-    protected static ?string $navigationIcon = 'heroicon-s-clipboard-document';
+    protected static ?string $navigationIcon = 'heroicon-s-gift';
 
     protected static ?string $navigationGroup = 'Donate';
 

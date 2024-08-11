@@ -13,11 +13,9 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Register any application services.
      */
-    public function register()
+    public function register(): void
     {
-        $this->app->singleton('programs', function () {
-            return Program::all(); // Mengambil data program dari model Program
-        });
+        //
     }
 
     /**
@@ -25,6 +23,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->app->singleton('programs', function () {
+            return Program::all(); // Mengambil data program dari model Program
+        });
+
         Donate::observe(DonateObserver::class);
 
         if ($this->app->environment('production')) {
@@ -34,7 +36,7 @@ class AppServiceProvider extends ServiceProvider
         // Menggunakan view composer untuk navbar
         view()->composer('layouts.navbar', function ($view) {
             // Ambil data program dari database atau dari sumber lain
-            $programs = Program::all(); 
+            $programs = Program::all();
 
             // Kirim data program ke view navbar
             $view->with('programs', $programs);

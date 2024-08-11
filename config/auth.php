@@ -61,6 +61,7 @@ return [
 
     'providers' => [
         'users' => [
+            'verified' => true,
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
         ],

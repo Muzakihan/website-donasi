@@ -4,7 +4,8 @@
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
                     <h1 class="fw-bold text-primary mb-4">Yayasan Anshor
-                        <span class="text-white">Team</span></h1>
+                        <span class="text-white">Team</span>
+                    </h1>
                     <p>Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed
                         stet lorem sit clita</p>
                     <div class="d-flex pt-2">
@@ -17,7 +18,7 @@
                     <h5 class="text-light mb-4">Address</h5>
                     <p><i class="fa fa-map-marker-alt me-3"></i>Jl. Griya Indah Serpong, Cibinong, Kec. Gn. Sindur, Kab
                         Bogor, Jawa Barat</p>
-                    <p><i class="fa fa-phone-alt me-3"></i>+62 895-1049-2185</p>
+                    <p><i class="fa-brands fa-whatsapp fa-lg me-3"></i>+62 895-1049-2185</p>
                     <p><i class="fa fa-envelope me-3"></i>anshoryatimdhuafa@gmail.com</p>
                 </div>
                 <div class="col-lg-3 col-md-6">

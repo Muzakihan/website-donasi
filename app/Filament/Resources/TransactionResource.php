@@ -10,13 +10,14 @@ use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Infolists\Components\Section;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Support\RawJs;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use GuzzleHttp\Psr7\Request;
-use Illuminate\Contracts\Pagination\Paginator;
 
 class TransactionResource extends Resource
 {
@@ -128,7 +129,7 @@ class TransactionResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ])
-            ->defaultSort('created_at', 'desc');    
+            ->defaultSort('created_at', 'desc');
     }
 
     public static function getRelations(): array
@@ -136,6 +137,42 @@ class TransactionResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                Section::make('View Transaction')
+                    ->schema([
+                        TextEntry::make('username')->label('Username'),
+                        TextEntry::make('email')
+                            ->label('Email')
+                            ->url(function ($record) {
+                                if ($record->email === NULL) {
+                                    return null;
+                                } else {
+                                    $emailLink = 'mailto:' . $record->email;
+                                    return $emailLink;
+                                }
+                            }),
+                        TextEntry::make('phone_number')
+                            ->label('Phone Number')
+                            ->url(function ($record) {
+                                if ($record->phone_number === NULL) {
+                                    return null;
+                                } else {
+                                    $waLink = 'https://wa.me/' . $record->phone_number;
+                                    return $waLink;
+                                }
+                            }),
+                        TextEntry::make('donate.name')->label('Category Donate'),
+                        TextEntry::make('donate_price')->label('Donate Price')->money('Rp '),
+                        TextEntry::make('hope_for_foundation')->label('Hope For Foundation'),
+                        TextEntry::make('hope_for_you')->label('hope For You'),
+                    ])
+                    ->columns(2),
+            ]);
     }
 
     public static function getPages(): array
