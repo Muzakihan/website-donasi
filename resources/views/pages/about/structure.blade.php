@@ -26,7 +26,7 @@
             </div>
             <div class="row g-3 justify-content-center">
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="card" >
+                    <div class="card">
                         <img src="assets/img/team-2.jpg" class="card-img-top rounded-10" alt="...">
                         <div class="card-body">
                             <h4 class="display-12 text-center">DR. FADLY PUTRA JAYA MSI</h4>
@@ -46,7 +46,7 @@
                 </div>
                 <div class="row g-3 justify-content-center">
                     <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="card" >
+                        <div class="card">
                             <img src="assets/img/team-2.jpg" class="card-img-top rounded-10" alt="...">
                             <div class="card-body">
                                 <h4 class="display-12 text-center">DR. CANRA KRISNA JAYA</h4>
@@ -66,7 +66,7 @@
                     </div>
                     <div class="row g-3 justify-content-center">
                         <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                            <div class="card" >
+                            <div class="card">
                                 <img src="assets/img/team-2.jpg" class="card-img-top rounded-10" alt="...">
                                 <div class="card-body">
                                     <h4 class="display-12 text-center">NUR HASANAH MSI</h4>
@@ -74,7 +74,7 @@
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                            <div class="card" >
+                            <div class="card">
                                 <img src="assets/img/team-2.jpg" class="card-img-top rounded-10" alt="...">
                                 <div class="card-body">
                                     <h4 class="display-12 text-center">NADIYA MARIZKA</h4>
@@ -90,7 +90,7 @@
                     </div>
                     <div class="row g-3 justify-content-center">
                         <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                            <div class="card" >
+                            <div class="card">
                                 <img src="assets/img/team-2.jpg" class="card-img-top rounded-10" alt="...">
                                 <div class="card-body">
                                     <h4 class="display-12 text-center">DANY JIWA WICAKSONO S.PD</h4>
@@ -102,7 +102,7 @@
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                            <div class="card" >
+                            <div class="card">
                                 <img src="assets/img/team-2.jpg" class="card-img-top rounded-10" alt="...">
                                 <div class="card-body">
                                     <h4 class="display-12 text-center">WANDI</h4>
@@ -114,7 +114,7 @@
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                            <div class="card" >
+                            <div class="card">
                                 <img src="assets/img/team-2.jpg" class="card-img-top rounded-10" alt="...">
                                 <div class="card-body">
                                     <h4 class="display-12 text-center">HAYATI NUFUS</h4>
@@ -126,7 +126,7 @@
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                            <div class="card" >
+                            <div class="card">
                                 <img src="assets/img/team-2.jpg" class="card-img-top rounded-10" alt="...">
                                 <div class="card-body">
                                     <h4 class="display-12 text-center">SRI UTAMI</h4>
@@ -140,6 +140,13 @@
                     </div>
                 </div>
             </div>
+            <br>
+            <h5 class="mt-4 text-center display-12">
+                "Struktur organisasi yayasan ansor yatim dan dhuafa diisi oleh orang-orang Yang berpengalaman dan
+                berkompeten di bidang sosial dan lainya, diawasi langsung oleh sekretaris divisi dakwah Majlis Ulama
+                Indonesia (MUI) pusat sehingga lebih terjaga dalam sisi syariatnya dan regulasinya untuk terciptanya yayasan
+                yang profesional amanah dan berintegritas yang bisa mempertanggungjawabkan amanah donasi para muhsinin
+                sesuai aturan syariat Islam dan perundang- undangan yang berlaku."</h5>
         </div>
     </div>
     <!-- Team End -->

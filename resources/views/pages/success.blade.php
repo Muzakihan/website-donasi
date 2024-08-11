@@ -15,16 +15,16 @@
         @import url(//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css);
         @import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
 
-        * {
+    * {
             font-family: "Poppins", sans-serif;
         }
 
         .btn-go-shopping {
             display: inline-block;
             padding: 0.75rem 1rem;
-            border: 2px solid #ffb524 !important;
+            border: 2px solid #0194f3 !important;
             border-radius: 9999px;
-            color: #FE6F0F !important;
+            color: #0194f3 !important;
             text-align: center;
             font-weight: 600;
             text-decoration: none;
@@ -34,7 +34,8 @@
         }
 
         .btn-go-shopping:hover {
-            background-color: #ffb524;
+            background-color: #0194f3;
+            color: white !important;
         }
     </style>
     <link rel="stylesheet" href="https://2-22-4-dot-lead-pages.appspot.com/static/lp918/min/default_thank_you.css">
@@ -64,7 +65,7 @@
 
 <body>
     <header class="site-header" id="header">
-        <i class="fa fa-check main-content__checkmark" id="checkmark" style="color: #FE6F0F !important"></i>
+        <i class="fa fa-check main-content__checkmark" id="checkmark" style="color: #0194f3 !important"></i>
     </header>
 
     <div class="main-content">

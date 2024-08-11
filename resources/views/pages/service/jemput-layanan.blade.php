@@ -26,16 +26,14 @@
                         <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                             <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Jemput Zakat
                             </div>
-                            <h1 class="display-6 text-white mb-5">Kemudahan Anda dalam menunaikan zakat</h1>
+                            <h1 class="display-6 text-white mb-5">Jemput Zakat infaq shodaqoh</h1>
                             <p class="text-white-50 mb-0">
-                                Silakan hubungi Layanan Jemput Donasi ICG atau Indonesia Beramal ID melalui WhatsApp Center
-                                kami.
-                                Klik tombol di bawah dan Mohon informasikan nama dan alamat lengkap penjemputan donasi Anda
+                                Kami menyediakan kencleng/kotak infaq untuk menjemput zakat,infaq,sedekah bapak/ibu, insyaallah setiap bulannya ada team kami yang akan menjemputnya langsung ke tempat bapak/ibu
                             </p>
                         </div>
                         <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                             <div class="p-2 bg-white rounded">
-                                <img src="assets/img/about-2.jpg" src="Jempulayanan-image" style="width: 100%">
+                                <img src="assets/img/jemputZakat.jpg" src="Jempulayanan-image" style="width: 100%">
                             </div>
                         </div>
                     </div>

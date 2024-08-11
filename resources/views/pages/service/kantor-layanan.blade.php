@@ -36,13 +36,29 @@
                     <p>Yayasan Anshor Yatim & Dhuafa, Jl. Griya Indah Serpong No.14 Blok V1, Cibinong, Kec. Gn. Sindur,
                         Kabupaten Bogor, Jawa Barat 16340</p>
                     <p><b>Sosial Media :</b></p>
-                    <div class="d-flex gap-2">
+                    <div class="d-flex gap-2 align-items-center">
                         <a class="btn btn-outline-primary
                             py-2 px-3"
                             href="https://www.instagram.com/anshor_yatim_dhuafa?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
                             target="_blank">
                             <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ">
                                 <i class="fa-brands fa-instagram"></i>
+                            </div>
+                        </a>
+                        <a class="btn btn-outline-primary
+                            py-2 px-3"
+                            href="https://www.instagram.com/anshor_yatim_dhuafa?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                            target="_blank">
+                            <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ">
+                                <i class="fa-brands fa-square-facebook"></i>
+                            </div>
+                        </a>
+                        <a class="btn btn-outline-primary
+                            py-2 px-3"
+                            href="https://www.instagram.com/anshor_yatim_dhuafa?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                            target="_blank">
+                            <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ">
+                                <i class="fa-brands fa-whatsapp"></i>
                             </div>
                         </a>
                     </div>
