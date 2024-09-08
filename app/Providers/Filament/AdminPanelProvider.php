@@ -2,14 +2,16 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Pages\Dashboard;
+use App\Filament\Widgets\DonationTransactionChart;
+use App\Filament\Widgets\StatsOverview;
+use App\Filament\Widgets\TransactionChart;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
-use Filament\Widgets;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -26,6 +28,9 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
+            ->brandLogo(asset('assets/img/logo.png'))
+            ->brandLogoHeight('3rem')
+            ->brandName('Anshor Yatim & Dhuafa')
             ->registration()
             ->profile()
             ->passwordReset()
@@ -35,17 +40,17 @@ class AdminPanelProvider extends PanelProvider
                 'primary' => Color::Amber,
             ])
             ->font('Poppins')
-            ->favicon('assets/img/favicon.ico')
+            ->favicon(asset('assets/img/favicon.ico'))
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
-                Pages\Dashboard::class,
+                Dashboard::class,
+            ])
+            ->widgets([
+                StatsOverview::class,
+                DonationTransactionChart::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
-            ->widgets([
-                Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
-            ])
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
